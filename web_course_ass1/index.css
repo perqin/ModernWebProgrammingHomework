@@ -1,0 +1,189 @@
+body {
+    background-image: url(http://courses.cs.washington.edu/courses/cse190m/09sp/homework/1/silverware.jpg);
+    background-repeat: repeat;
+    background-attachment: fixed;
+    font-family: "Georgia";
+    min-width: 750px;
+}
+
+h1,h2 {
+    color: #A4A400;
+    background-color: #F0F0F0;
+    font-family: "Century Gothic";
+    text-decoration: underline;
+    letter-spacing: 0.2em;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 22pt;
+}
+
+h2 {
+    font-weight: normal;
+    text-align: left;
+}
+
+#div-search {
+    height: auto;
+    width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#div-search form {
+    height: auto;
+    width: auto;
+}
+
+#input-search {
+    padding:4px 15px;
+    background: white;
+    border:2px solid #a4a400;
+    width: 160px;
+}
+
+#button-search {
+    border-style: none;
+    background-color: white;
+    color:#A4A400;
+    font-size: 20px;
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+#nav_bar {
+    height: 40px;
+}
+
+#nav_bar_menu {
+    float: left;
+    width: auto;
+    height: inherit;
+}
+
+#nav_bar_sign {
+    float: right;
+    width: auto;
+    height: inherit;
+}
+
+.nav_bar_horizontal_list {
+    list-style-type: none;
+    height: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.nav_bar_horizontal_list li {
+    height: inherit;
+    float: left;
+}
+
+.nav_bar_horizontal_list li a {
+    font-weight: bold;
+    font-size: 20px;
+    color: #a4a400;
+    display: block;
+    height: inherit;
+    line-height: 40px;
+    margin-left: 4px;
+}
+
+#a-new-index {
+    font-size: 8px;
+    color: darkorange;
+    line-height: 48px;
+}
+
+.div-section-title {
+    min-width: inherit;
+}
+
+.div-section-card-img {
+    width: 120px;
+    height: 120px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+    float: left;
+}
+
+#pop-div-1 {
+    background-image: url(http://courses.cs.washington.edu/courses/cse190m/09sp/homework/1/pie.jpg);
+}
+
+#pop-div-2 {
+    background-image: url(images/blueberry-pie.jpg);
+}
+
+#pop-div-3 {
+    background-image: url(images/crustless-cranberry-pie.jpg);
+}
+
+#bs-div-1 {
+    background-image: url(images/easy-key-lime-pie-i.jpg);
+}
+
+#bs-div-2 {
+    background-image: url(images/key-lime-pie-vii.jpg);
+}
+
+#bs-div-3 {
+    background-image: url(images/perfect-pumpkin-pie.jpg);
+}
+
+.a-card {
+    display: block;
+    margin-top: 20px;
+}
+
+.div-section-card-p {
+    display: inline-block;
+    height: 120px;
+    margin-left: 20px;
+}
+
+.div-section-card-p p {
+    font-weight: normal;
+    font-size: 22px;
+    text-decoration: underline;
+    color: #a4a400;
+    line-height: 120px;
+    margin-top: 0;
+}
+
+#div-footer {
+    height: 64px;
+    background-color: darkkhaki;
+    display: block;
+    margin-top: 20px;
+}
+
+#div-footer span,#div-footer p {
+    line-height: 64px;
+    margin-top: 0;
+    color: black;
+}
+
+#div-footer p {
+    display: block;
+    height: inherit;
+    width: inherit;
+    text-align: center;
+    font-weight: normal;
+}
+
+#div-footer span {
+    margin-left: 6px;
+    margin-right: 6px;
+    color: darksalmon;
+    font-weight: bold;
+}
+
+#div-footer a {
+    color: dimgrey;
+    font-weight: normal;
+}

@@ -1,0 +1,268 @@
+* {
+    font-family: "微软雅黑";
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    color: darkorange;
+    font-size: 18px;
+    min-width: inherit;
+}
+
+#div-head {
+    min-width: 850px;
+    height: 150px;
+}
+
+#div-logo {
+    float: left;
+    margin-top: 24px;
+    margin-left: 24px;
+    margin-bottom: 12px;
+}
+
+#div-search {
+    float: right;
+    height: 36px;
+    width: auto;
+    margin-top: 60px;
+    margin-right: 48px;
+}
+
+#div-search form {
+    height: auto;
+    width: inherit;
+}
+
+#input-search {
+    padding:8px 15px;
+    background: white;
+    border:4px solid darkorange;
+    width: 200px
+}
+
+#button-search {
+    position: relative;
+    padding:8px 16px;
+    left: -8px;
+    border:4px solid darkorange;
+    background-color: darkorange;
+    color:yellow;
+    transition: all 700ms;
+    -moz-transition: all 700ms;
+    -webkit-transition: all 700ms;
+    -o-transition: all 700ms;
+}
+
+#button-search:hover {
+    background-color: white;
+    color: darkorange;
+    transition: all 700ms;
+    -moz-transition: all 700ms;
+    -webkit-transition: all 700ms;
+    -o-transition: all 700ms;
+}
+
+#nav_bar {
+    background-color: orange;
+    height: 56px;
+    min-width: 850px;
+}
+
+#nav_bar_menu {
+    float: left;
+    width: auto;
+    height: inherit;
+}
+
+#nav_bar_sign {
+    float: right;
+    width: auto;
+    height: inherit;
+}
+
+.nav_bar_horizontal_list {
+    list-style-type: none;
+    height: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.nav_bar_horizontal_list li {
+    height: inherit;
+    float: left;
+}
+
+.nav_bar_horizontal_list li a {
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: yellow;
+    display: block;
+    width: 120px;
+    height: inherit;
+    line-height: 56px;
+    transition: all 700ms;
+    -moz-transition: all 700ms;
+    -webkit-transition: all 700ms;
+    -o-transition: all 700ms;
+}
+
+.nav_bar_horizontal_list li a:hover {
+    color: #fff;
+    transition: all 700ms;
+    -moz-transition: all 700ms;
+    -webkit-transition: all 700ms;
+    -o-transition: all 700ms;
+}
+
+.section_div {
+    margin-top: 50px;
+    min-width: 850px;
+}
+
+.div-section-title {
+    min-width: inherit;
+}
+
+.div-section-body {
+    width: 850px;
+    margin: auto;
+}
+
+.div-section-card-l {
+    float: left;
+    width: 250px;
+}
+
+.div-section-card-m {
+    display: inline-block;
+    width: 250px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.div-section-card-r {
+    float: right;
+    width: 250px;
+}
+
+.div-section-card-img {
+    width: inherit;
+    height: 250px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#pop-div-1 {
+    background-image: url(http://courses.cs.washington.edu/courses/cse190m/09sp/homework/1/pie.jpg);
+}
+
+#pop-div-2 {
+    background-image: url(../images/blueberry-pie.jpg);
+}
+
+#pop-div-3 {
+    background-image: url(../images/crustless-cranberry-pie.jpg);
+}
+
+#bs-div-1 {
+    background-image: url(../images/easy-key-lime-pie-i.jpg);
+}
+
+#bs-div-2 {
+    background-image: url(../images/key-lime-pie-vii.jpg);
+}
+
+#bs-div-3 {
+    background-image: url(../images/perfect-pumpkin-pie.jpg);
+}
+
+.a-card {
+    display: block;
+    text-decoration: none;
+    border-bottom-color: darkorange;
+    border-bottom-width: thick;
+    border-bottom-style: solid;
+    transition: all 700ms;
+    -moz-transition: all 700ms;
+    -webkit-transition: all 700ms;
+    -o-transition: all 700ms;
+}
+
+.a-card:hover {
+    border-bottom-color: #ffcf00;
+    transition: all 700ms;
+    -moz-transition: all 700ms;
+    -webkit-transition: all 700ms;
+    -o-transition: all 700ms;
+}
+
+.div-section-card-p {
+    text-align: center;
+    display: block;
+    width: inherit;
+    height: 48px;
+    margin-top: 0px;
+}
+
+.div-section-card-p p {
+    text-align: center;
+    font-weight: normal;
+    font-size: 16px;
+    color: darkorange;
+    line-height: 40px;
+    white-space: nowrap;
+    transition: all 700ms;
+    -moz-transition: all 700ms;
+    -webkit-transition: all 700ms;
+    -o-transition: all 700ms;
+}
+
+.a-card:hover .div-section-card-p p {
+    color: #ffcf00;
+    transition: all 700ms;
+    -moz-transition: all 700ms;
+    -webkit-transition: all 700ms;
+    -o-transition: all 700ms;
+}
+
+#div-footer {
+    height: 128px;
+    background-color: #bf2f00;
+    display: block;
+    margin-top: 50px;
+}
+
+#div-footer span,#div-footer p {
+    line-height: 128px;
+    margin-top: 0;
+    color: coral;
+}
+
+#div-footer p {
+    display: block;
+    height: inherit;
+    width: inherit;
+    text-align: center;
+    font-weight: normal;
+}
+
+#div-footer span {
+    margin-left: 6px;
+    margin-right: 6px;
+    color: darksalmon;
+    font-weight: bold;
+}
+
+#div-footer a {
+    color: white;
+    font-weight: normal;
+}

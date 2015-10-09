@@ -1,0 +1,19 @@
+* {
+    text-align: center;
+    color: #a4a400;
+}
+
+h1 {
+    font-weight: bolder;
+    margin-top: 100px;
+    font-size: 100px;
+}
+
+p {
+    font-weight: normal;
+    font-size: 30px;
+}
+
+a {
+    font-weight: bold;
+}
