@@ -1,0 +1,136 @@
+body {
+    /*background-image: url(http://my.ss.sysu.edu.cn/wiki/download/attachments/7045968/background.png);*/
+    background-image: url(background.png);
+    font-size: 8pt;
+    font-family: "Verdana","Tahoma","sans-serif";
+    margin: 0;
+    padding: 0;
+}
+
+div#banner {
+    /*background-image: url(http://my.ss.sysu.edu.cn/wiki/download/attachments/7045968/bannerbackground.png);*/
+    background-image: url(bannerbackground.png);
+    background-repeat: repeat-x;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24pt;
+    font-weight: bold;
+    font-family: "Tahoma","Verdana","sans-serif";
+    text-align: center;
+}
+
+div#content {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    border-color: gray;
+    border-width: 4px;
+    border-style: solid;
+}
+
+div#sidebar {
+    float: right;
+    width: 250px;
+    background-color: #A2B964;
+    font-family: "Arial","sans-serif";
+    font-size: 8pt;
+    font-weight: normal;
+}
+
+div#sidebar dl {
+    margin: 10px;
+}
+
+div#sidebar dl dt {
+    font-weight: bold;
+}
+
+div#sidebar dl dt+dd+dt {
+    margin-top: 1em;
+}
+
+div#main {
+    width: 550px;
+}
+
+div#rotten-rating-section {
+    /*background-image: url(http://my.ss.sysu.edu.cn/wiki/download/attachments/7045968/rottenbackground.png);*/
+    background-image: url(rottenbackground.png);
+    background-repeat: repeat-x;
+    font-size: 8pt;
+    color: white;
+}
+
+div#rotten-rating-section span {
+    vertical-align: 13px;
+}
+
+div#rotten-rating-section span#rating {
+    font-size: 48pt;
+    color: red;
+    font-weight: bold;
+    line-height: 83px;
+}
+
+div#reviews-left {
+    float: left;
+    width: 47%;
+    margin-left: 2%;
+}
+
+div#reviews-right {
+    float: right;
+    width: 47%;
+    margin-right: 2%;
+}
+
+p.review-content {
+    font-size: 8pt;
+    font-weight: bold;
+    background-color: #E1D697;
+    border-width: 2px;
+    border-color: gray;
+    border-style: solid;
+    padding: 8px;
+    overflow: hidden;
+}
+
+p.review-content img {
+    float: left;
+    margin-right: 5px;
+}
+
+p.review-content+p {
+    overflow: hidden;
+}
+
+p.review-content+p img {
+    float: left;
+    margin-right: 5px;
+}
+
+p.review-content+p span {
+    font-style: italic;
+}
+
+p.review-content+p+p {
+    margin-top: 3em;
+}
+
+p#bottom-bar {
+    clear: right;
+    text-align: center;
+    background-color: #A2B964;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 0;
+}
+
+div#validator-icons {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
