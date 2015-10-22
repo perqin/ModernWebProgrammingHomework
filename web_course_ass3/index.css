@@ -1,0 +1,302 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#bottom-positioner {
+    height: 178px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+#button {
+    width: 28px;
+    height: 28px;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+#info-bar {             
+    background-color: #7f7f7f;
+    border-radius: 67px;
+    height: 134px;
+    width: 134px;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -53px;
+    bottom: 0;
+    left: -53px;
+    margin: auto;
+    -webkit-transform: scale(0.1);
+    -moz-transform: scale(0.1);
+    -ms-transform: scale(0.1);
+    -o-transform: scale(0.1);
+    transform: scale(0.1);
+    opacity: 0;
+}
+
+#button:hover #info-bar {
+    -webkit-transform: scale(1) translateY(-100px);
+    -moz-transform: scale(1) translateY(-100px);
+    -ms-transform: scale(1) translateY(-100px);
+    -o-transform: scale(1) translateY(-100px);
+    transform: scale(1) translateY(-100px);
+    opacity: 1;
+}
+
+.info {
+    height: 134px;
+    width: 134px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.info ul {
+    margin-top: 0;
+    padding: 0;
+    font-weight: bolder;
+    text-align: center;
+    list-style: none;
+}
+
+.page span {
+    color: white;
+}
+
+.user img {
+    vertical-align: middle;
+    margin-right: 16px;
+}
+
+.user span {
+    font-size: 17px;
+    line-height: 40px;
+}
+
+.comment img {
+    vertical-align: middle;
+    margin-right: 29px;
+    width: 26px;
+}
+
+.comment span {
+    font-size: 32px;
+    line-height: 40px;
+}
+
+.mine {
+    display: inline;
+}
+
+.mine img {
+    vertical-align: middle;
+    margin-right: 11px;
+}
+
+.mine span {
+    color: #59c193;
+    line-height: 36px;
+}
+
+#control-ring-container {
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#control-ring {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#control-ring li {
+    width: 34px;
+    height: 34px;
+    border-radius: 17px;
+    background-color: #7f7f7f;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+#button:hover #control-ring li {
+    opacity: 1;
+}
+
+.mask {
+    background-image: url(assets/images/nomask.png);
+}
+
+#button:hover .mask {
+    -webkit-transform: translateX(-65px) translateY(-37px);
+    -moz-transform: translateX(-65px) translateY(-37px);
+    -ms-transform: translateX(-65px) translateY(-37px);
+    -o-transform: translateX(-65px) translateY(-37px);
+    transform: translateX(-65px) translateY(-37px);
+}
+
+.history {
+    background-image: url(assets/images/history.png);
+}
+
+#button:hover .history {
+    -webkit-transform: translateX(-73px) translateY(3px);
+    -moz-transform: translateX(-73px) translateY(3px);
+    -ms-transform: translateX(-73px) translateY(3px);
+    -o-transform: translateX(-73px) translateY(3px);
+    transform: translateX(-73px) translateY(3px);
+}
+
+.message {
+    background-image: url(assets/images/message.png);
+}
+
+#button:hover .message {
+    -webkit-transform: translateX(-59px) translateY(41px);
+    -moz-transform: translateX(-59px) translateY(41px);
+    -ms-transform: translateX(-59px) translateY(41px);
+    -o-transform: translateX(-59px) translateY(41px);
+    transform: translateX(-59px) translateY(41px);
+}
+
+.unread {
+    height: 22px;
+    width: 22px;
+    background-color: red;
+    border-radius: 11px;
+    color: white;
+    display: block;
+    text-align: center;
+    line-height: 22px;
+    float: right;
+    margin-top: -7px;
+    margin-right: -7px;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.setting {
+    background-image: url(assets/images/setting.png);
+}
+
+#button:hover .setting {
+    -webkit-transform: translateX(-26px) translateY(63px);
+    -moz-transform: translateX(-26px) translateY(63px);
+    -ms-transform: translateX(-26px) translateY(63px);
+    -o-transform: translateX(-26px) translateY(63px);
+    transform: translateX(-26px) translateY(63px);
+}
+
+.sign {
+    background-image: url(assets/images/signin.png);
+}
+
+#button:hover .sign {
+    -webkit-transform: translateX(19px) translateY(60px);
+    -moz-transform: translateX(19px) translateY(60px);
+    -ms-transform: translateX(19px) translateY(60px);
+    -o-transform: translateX(19px) translateY(60px);
+    transform: translateX(19px) translateY(60px);
+}
+
+.apb,.icon {
+    width: 28px;
+    height: 28px;
+}
+
+.apb {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 14px;
+    background-color: #a09dc2;
+}
+
+#button:hover .apb {
+    background-color: rgba(48, 63, 159, 1);
+    -webkit-transform: scale(1.86);
+    -moz-transform: scale(1.86);
+    -ms-transform: scale(1.86);
+    -o-transform: scale(1.86);
+    transform: scale(1.86);
+}
+
+.icon img {
+    display: block;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#icon-white {
+    width: 24px;
+    opacity: 1;
+}
+
+#button:hover #icon-white {
+    opacity: 0;
+}
+
+#icon-green {
+    width: 20px;
+    opacity: 0;
+}
+
+#button:hover #icon-green {
+    opacity: 1;
+}
+
+#info-bar,#info-bar *,#control-ring-container * {
+    -webkit-transition: all 500ms;
+    -moz-transition: all 500ms;
+    -o-transition: all 500ms;
+    transition: all 500ms;
+}
+
+.apb,.apb * {
+    -webkit-transition: all 500ms ease 350ms;
+    -moz-transition: all 500ms ease 350ms;
+    -o-transition: all 500ms ease 350ms;
+    transition: all 500ms ease 350ms;
+}
+
+#button:hover .apb,#button:hover .apb * {
+    -webkit-transition: all 500ms;
+    -moz-transition: all 500ms;
+    -o-transition: all 500ms;
+    transition: all 500ms;
+}
+
+#button:hover #info-bar,#button:hover #info-bar *,#button:hover #control-ring-container * {
+    -webkit-transition: all 500ms ease 350ms;
+    -moz-transition: all 500ms ease 350ms;
+    -o-transition: all 500ms ease 350ms;
+    transition: all 500ms ease 350ms;
+}
