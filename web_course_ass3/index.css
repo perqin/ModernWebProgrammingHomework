@@ -5,9 +5,11 @@ body {
 
 #bottom-positioner {
     height: 178px;
-    width: 100%;
+    width: 200px;
     position: fixed;
     bottom: 0;
+    left: 50%;
+    margin-left: -100px;
 }
 
 #button {
@@ -20,6 +22,12 @@ body {
     bottom: 0;
     left: 0;
     margin: auto;
+}
+
+#button:hover {
+    width: 148px;
+    height: 160px;
+    border-radius: 0 90px 90px 50px;
 }
 
 #info-bar {             
@@ -181,19 +189,19 @@ body {
 }
 
 .unread {
-    height: 22px;
-    width: 22px;
+    display: block;
     background-color: red;
     border-radius: 11px;
+    height: 22px;
+    width: 22px;
     color: white;
-    display: block;
+    font-size: 14px;
     text-align: center;
+    font-weight: bolder;
     line-height: 22px;
     float: right;
     margin-top: -7px;
     margin-right: -7px;
-    font-size: 14px;
-    font-weight: bolder;
 }
 
 .setting {
@@ -245,39 +253,18 @@ body {
     transform: scale(1.86);
 }
 
-.icon img {
-    display: block;
-    position: absolute;
-    margin: auto;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+.icon {
+    background-image: url(assets/images/atplus_white.png);
+    background-repeat: no-repeat;
+    background-size: 24px auto;
+    background-position: center;
 }
 
-#icon-white {
-    width: 24px;
-    opacity: 1;
-}
-
-#button:hover #icon-white {
-    opacity: 0;
-}
-
-#icon-green {
-    width: 20px;
-    opacity: 0;
-}
-
-#button:hover #icon-green {
-    opacity: 1;
-}
-
-#info-bar,#info-bar *,#control-ring-container * {
-    -webkit-transition: all 500ms;
-    -moz-transition: all 500ms;
-    -o-transition: all 500ms;
-    transition: all 500ms;
+#button:hover .icon {
+    background-image: url(assets/images/atplus_green.png);
+    background-repeat: no-repeat;
+    background-size: 20px auto;
+    background-position: center;
 }
 
 .apb,.apb * {
@@ -287,16 +274,9 @@ body {
     transition: all 500ms ease 350ms;
 }
 
-#button:hover .apb,#button:hover .apb * {
+#button,#info-bar,#info-bar *,#control-ring-container *,#button:hover,#button:hover .apb,#button:hover .apb *,#button:hover #info-bar,#button:hover #info-bar *,#button:hover #control-ring-container * {
     -webkit-transition: all 500ms;
     -moz-transition: all 500ms;
     -o-transition: all 500ms;
     transition: all 500ms;
-}
-
-#button:hover #info-bar,#button:hover #info-bar *,#button:hover #control-ring-container * {
-    -webkit-transition: all 500ms ease 350ms;
-    -moz-transition: all 500ms ease 350ms;
-    -o-transition: all 500ms ease 350ms;
-    transition: all 500ms ease 350ms;
 }
