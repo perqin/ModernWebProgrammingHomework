@@ -1,11 +1,126 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8"/>
-    <link rel="stylesheet" type="text/css" href="calculator.css"/>
-    <script type="text/javascript" src="calculator.js"></script>
-    <title>Material Calculator</title>
-</head>
-<body>
-</body>
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="calculator.css"/>
+        <script type="text/javascript" src="calculator.js"></script>
+        <title>Tile Calculator</title>
+    </head>
+    <body>
+        <div id="calculator">
+            <div id="screen">
+                <div id="expression">
+                    <p id="expression-text">2*3</p>
+                </div>
+                <div id="result">
+                    <p id="result-text">6</p>
+                </div>
+            </div>
+            <div id="key-pad">
+                <div id="extra-pad">
+                    <div class="button extra-button">
+                        <p id="extra-bl">(</p>
+                        <div class="mouse-event-layer"></div>
+                    </div>
+                    <div class="button extra-button">
+                        <p id="extra-br">)</p>
+                        <div class="mouse-event-layer"></div>
+                    </div>
+                    <div class="button extra-button">
+                        <p id="extra-ce">CE</p>
+                        <div class="mouse-event-layer"></div>
+                    </div>
+                    <div class="button extra-button">
+                        <p id="extra-del">DEL</p>
+                        <div class="mouse-event-layer"></div>
+                    </div>
+                </div>
+                <div id="digit-pad">
+                    <div id="digit-row-1" class="digit-button-row">
+                        <div class="button digit-button digit-button-left">
+                            <p id="digit-7">7</p>
+                            <div class="mouse-event-layer"></div>
+                        </div>
+                        <div class="button digit-button digit-button-middle">
+                            <p id="digit-8">8</p>
+                            <div class="mouse-event-layer"></div>
+                        </div>
+                        <div class="button digit-button digit-button-right">
+                            <p id="digit-9">9</p>
+                            <div class="mouse-event-layer"></div>
+                        </div>
+                    </div>
+                    <div id="digit-row-2" class="digit-button-row">
+                        <div class="button digit-button digit-button-left">
+                            <p id="digit-4">4</p>
+                            <div class="mouse-event-layer"></div>
+                        </div>
+                        <div class="button digit-button digit-button-middle">
+                            <p id="digit-5">5</p>
+                            <div class="mouse-event-layer"></div>
+                        </div>
+                        <div class="button digit-button digit-button-right">
+                            <p id="digit-6">6</p>
+                            <div class="mouse-event-layer"></div>
+                        </div>
+                    </div>
+                    <div id="digit-row-3" class="digit-button-row">
+                        <div class="button digit-button digit-button-left">
+                            <p id="digit-1">1</p>
+                            <div class="mouse-event-layer"></div>
+                        </div>
+                        <div class="button digit-button digit-button-middle">
+                            <p id="digit-2">2</p>
+                            <div class="mouse-event-layer"></div>
+                        </div>
+                        <div class="button digit-button digit-button-right">
+                            <p id="digit-3">3</p>
+                            <div class="mouse-event-layer"></div>
+                        </div>
+                    </div>
+                    <div id="digit-row-4" class="digit-button-row">
+                        <div class="button digit-button digit-button-left">
+                            <p id="digit-dot">.</p>
+                            <div class="mouse-event-layer"></div>
+                        </div>
+                        <div class="button digit-button digit-button-middle">
+                            <p id="digit-0">0</p>
+                            <div class="mouse-event-layer"></div>
+                        </div>
+                        <div class="button digit-button digit-button-right">
+                            <p id="digit-equal">=</p>
+                            <div class="mouse-event-layer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="operator-pad">
+                    <div class="button operator-button">
+                        <p id="operator-divide">/</p>
+                        <div class="mouse-event-layer"></div>
+                    </div>
+                    <div class="button operator-button">
+                        <p id="operator-multiply">*</p>
+                        <div class="mouse-event-layer"></div>
+                    </div>
+                    <div class="button operator-button">
+                        <p id="operator-subtract">-</p>
+                        <div class="mouse-event-layer"></div>
+                    </div>
+                    <div class="button operator-button">
+                        <p id="operator-add">+</p>
+                        <div class="mouse-event-layer"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="screen-shadow-mask">
+                <div id="screen-about-positioner">
+                    <div id="screen-about">
+                        <p><span id="app-name">Tile Calculator</span><br />
+                        <span id="author">Author : Perqin</span><br />
+                        <span id="feedback">Feedback : perqin@perqin.com</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

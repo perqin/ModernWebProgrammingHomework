@@ -1,0 +1,225 @@
+/**
+                                                                               |
+ *  Readme:
+ *  1. I know that using id-selector or class-selector without element-selector
+ *     is enough, but I will still use 'div.my-div' instead of '.my-div', so
+ *     that I can know what element I am modifying without jumping back to html
+ *     file.
+ **/
+
+@keyframes clear-screen {
+    0% { opacity: 0; height: 0px; }
+    33% { opacity: 1; height: 220px; }
+    67% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes error-screen {
+    0% { opacity: 0; height: 0px; background-color: #E91E63; }
+    33% { opacity: 1; height: 220px; }
+    67% { opacity: 1; }
+    100% { opacity: 0; background-color: #E91E63; }
+}
+
+@keyframes shift-answer {
+    0% { font-size: 32px; transform: translateY(0px); }
+    100% { font-size: 56px; transform: translateY(-110px); }
+}
+
+@keyframes fade-expression {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-110px); }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+div#calculator {
+    position: fixed;
+    width: 360px;
+    height: 640px;
+    top: 0; left: 0; right: 0; bottom: 0; margin: auto;
+    box-shadow: 0 0 12px 4px #7f7f7f;
+}
+
+div#screen {
+    width: inherit;
+    height: 220px;
+    background-color: white;
+}
+
+div#screen p {
+    text-align: right;
+}
+
+div#expression {
+    width: inherit;
+    height: 140px;
+}
+
+div#expression p,div#result p {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+div#expression p {
+    line-height: 140px;
+    font-size: 56px;
+    animation-name: none;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in-out;
+}
+
+div#result {
+    width: inherit;
+    height: 80px;
+}
+
+div#result p {
+    line-height: 80px;
+    font-size: 32px;
+    animation-name: none;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in-out;
+}
+
+div#key-pad {
+    width: inherit;
+    height: 420px;
+}
+
+div#key-pad p {
+    width: inherit;
+    height: inherit;
+    line-height: 84px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+div#extra-pad {
+    width: inherit;
+    height: 84px;
+}
+
+div#digit-pad {
+    width: 270px;
+    height: 336px;
+    float: left;
+}
+
+div#operator-pad {
+    width: 90px;
+    height: 336px;
+    float: right;
+}
+
+div#digit-pad p {
+    font-size: 36px;
+}
+
+div#operator-pad p,div#extra-pad p {
+    font-size: 27px;
+}
+
+div.digit-button-row {
+    width: inherit;
+    height: 84px;
+}
+
+div.extra-button {
+    float: left;
+    background-color: #9C27B0;
+}
+
+div.digit-button {
+    float: left;
+    background-color: #434343;
+}
+
+div.operator-button {
+    background-color: #636363;
+}
+
+div.button {
+    position: relative;
+    width: 90px;
+    height: 84px;
+}
+
+div.mouse-event-layer {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    background-color: white;
+    transition: opacity 800ms;
+}
+
+div.mouse-event-layer:hover {
+    opacity: 0.12;
+    transition: opacity 800ms;
+}
+
+div#screen-shadow-mask {
+    width: inherit;
+    height: 220px;
+    position: absolute;
+    top: 0;
+    box-shadow: 0 6px 12px -6px black;
+}
+
+div#screen-about-positioner {
+    background-color: #009688;
+    width: inherit;
+    height: inherit;
+    position: relative;
+    opacity: 0;
+    animation-name: none;
+    animation-duration: 1000ms;
+    animation-timing-function: ease-in-out;
+}
+
+div#screen-about {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    top: 0; left: 0; right: 0; bottom: 0; margin: auto;
+}
+
+div#screen-about p {
+    font-family: sans-serif;
+    color: white;
+    width: inherit;
+    text-align: center;
+    margin-top: 48px;
+}
+
+span#app-name {
+/*    margin-top: 48px;*/
+    font-size: 40px;
+}
+
+span#author {
+    font-size: 24px;
+}
+
+span#feedback {
+    font-size: 20px;
+    line-height: 36px;
+}
+
+div#key-pad-mask {
+    width: inherit;
+    height: 420px;
+    position: absolute;
+    top: 220px;
+}
