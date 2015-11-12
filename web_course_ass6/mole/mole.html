@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="mole.css"/>
+        <script type="text/javascript" src="mole.js"></script>
+        <title>Mole</title>
+    </head>
+    <body>
+        <h1>Whac-a-mole</h1>
+        <p id="subtitle">Test your skill. How many moles can you hit in 30 seconds?</p>
+        <h2 id="instruction-title">Instructions:</h2>
+        <ol id="instructions">
+            <li>Click on the moles as they appear randomly by the computer.</li>
+            <li>1 point per hit, minus 1 point per miss.</li>
+        </ol>
+        <div id="game-info-bar">
+            <p>Time:<span>0</span></p>
+            <p>Score:<span>0</span></p>
+            <div>START</div>
+            <form>
+                Column:<input type="number" min="3" max="16" step="1" value="5"/>
+                Row:<input type="number" min="3" max="9" step="1" value="4"/>
+            </form>
+        </div>
+    </body>
+</html>
