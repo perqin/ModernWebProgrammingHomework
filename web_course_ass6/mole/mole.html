@@ -15,13 +15,31 @@
             <li>1 point per hit, minus 1 point per miss.</li>
         </ol>
         <div id="game-info-bar">
-            <p>Time:<span>0</span></p>
-            <p>Score:<span>0</span></p>
-            <div>START</div>
             <form>
-                Column:<input type="number" min="3" max="16" step="1" value="5"/>
-                Row:<input type="number" min="3" max="9" step="1" value="4"/>
+                <div class="game-info-item">
+                    <p class="info-title">Time</p>
+                    <p id="time-indicator" class="info-value">0</p>
+                </div>
+                <div class="game-info-item">
+                    <p class="info-title">Score</p>
+                    <p id="score-indicator" class="info-value">0</p>
+                </div>
+                <div id="start-stop" class="game-info-item">
+                    <p id="start-stop-p">START</p>
+                </div>
+                <div class="game-info-item">
+                    <p class="info-title">Column</p>
+                    <input id="column-indicator" class="info-value" type="number" min="3" max="14" step="1" value="5"/>
+                </div>
+                <div class="game-info-item">
+                    <p class="info-title">Row</p>
+                    <input id="row-indicator" class="info-value" type="number" min="3" max="9" step="1" value="4"/>
+                </div>
             </form>
+        </div>
+        <div id="mole-holes-container"></div>
+        <div id="pause-screen" class="pause-screen-hide">
+            <p>PAUSE</p>
         </div>
     </body>
 </html>
