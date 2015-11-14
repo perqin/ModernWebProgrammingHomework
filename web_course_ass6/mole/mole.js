@@ -48,6 +48,7 @@ function changeTimeLeft(timeLeft) {
 
 function initTimers() {
     "use strict";
+    TimeLeft = 30;
     Timer = setInterval(function () {
         changeTimeLeft(TimeLeft - 1);
     }, 1000);
@@ -157,7 +158,7 @@ function generateHoles() {
             // Add new property
             newHole.holeIndex = r * ColumnCount + c;
             newHole.addEventListener("click", onHoleClicked);
-            newHole.addEventListener("animationEnd", resetAnimationName);
+            newHole.addEventListener("webkitAnimationEnd", resetAnimationName);
             GameContainer.appendChild(newHole);
         }
     }

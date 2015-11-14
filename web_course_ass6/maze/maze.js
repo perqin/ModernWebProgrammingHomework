@@ -159,13 +159,13 @@ function initElements() {
 function dispatchEventListener() {
     "use strict";
     var i;
-    WarningText.addEventListener("animationEnd", resetWarningAnimationName);
+    WarningText.addEventListener("webkitAnimationEnd", resetWarningAnimationName);
     StartTerminal.addEventListener("mouseover", startGame);
     EndTerminal.addEventListener("mouseover", stopGame);
     FinishDetector.addEventListener("mouseover", reachEnd);
     for (i = 0; i < Walls.length; ++i) {
         Walls[i].addEventListener("mouseover", stopGame);
-        Walls[i].addEventListener("animationEnd", resetWallAnimationName);
+        Walls[i].addEventListener("webkitAnimationEnd", resetWallAnimationName);
     }
 }
 
