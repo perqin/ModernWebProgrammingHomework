@@ -52,8 +52,15 @@ function changeWarningText(message, visible) {
     }
     if (visible) {
         WarningText.style.animationName = "warning-visible";
+        setTimeout(function() {
+            WarningText.style.opacity = 1;
+        }, 900);
     } else {
         WarningText.style.animationName = "warning-hidden";
+        setTimeout(function() {
+            WarningText.style.opacity = 0;
+            WarningText.textContent = "";
+        }, 900);
     }
 }
 

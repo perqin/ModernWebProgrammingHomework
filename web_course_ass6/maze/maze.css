@@ -42,6 +42,7 @@ p#warning {
     height: 62px;
     animation-duration: 1000ms;
     animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
 }
 
 p.tips {
