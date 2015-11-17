@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-width: 400px;
+}
+
+h1 {
+    text-align: center;
+    margin: 26px;
+}
+
+#puzzle-board {
+    width: 352px;
+    height: 352px;
+    position: relative;
+    left: 0; right: 0; margin-left: auto; margin-right: auto;
+    box-shadow: 0 9px 18px 0 #7f7f7f;
+}
+
+.tile {
+    position: absolute;
+    transition: all 200ms;
+    z-index: initial;
+}
+
+.tile:hover {
+    transform: scale(1.04);
+    box-shadow: 0 3px 12px 0 #7f7f7f;
+    z-index: 30;
+}
+
+#button-row {
+    width: 352px;
+    height: auto;
+    margin-left: auto; margin-right: auto;
+    margin-top: 26px;
+}
+
+.button {
+    width: 100px;
+    display: inline-block;
+    background-color: #9C27B0;
+    float: left;
+    box-shadow: 0 3px 6px 0 #7f7f7f;
+    transition: all 300ms;
+}
+
+.button p {
+    color: white;
+    width: inherit;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.button:hover {
+    box-shadow: 0 3px 12px 0 #7f7f7f;
+}
+
+.button:hover p {
+}
+
+#game-control {
+    margin-left: 26px;
+    margin-right: 26px;
+}
