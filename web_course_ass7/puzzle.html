@@ -1,22 +1,46 @@
 <html>
     <head>
+        <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" href="puzzle.css"/>
         <script type="text/javascript" src="puzzle.js"></script>
         <title>Fifteen Puzzle</title>
     </head>
     <body>
         <h1>Fifteen Puzzle</h1>
-        <div id="puzzle-board">
+        <div id="main-board">
+            <div id="puzzle-board" class="board-visible board"></div>
+            <div id="rankings-board" class="board-hidden board"></div>
+            <div id="settings-board" class="board-hidden board">
+                <h2>Display Language</h2>
+                <div id="language-settings-item" class="settings-item">
+                    <div id="prev-lang" class="button button-prev button-enable"><img src="res/arrow_left.png" /></div>
+                    <div class="selector-div"><p id="language-label">English</p></div>
+                    <div id="next-lang" class="button button-next button-enable"><img src="res/arrow_right.png" /></div>
+                </div>
+                <h2>Select Puzzle</h2>
+                <div id="puzzle-settings-item" class="settings-item">
+                    <div id="prev-puzzle" class="button button-prev button-enable"><img src="res/arrow_left.png" /></div>
+                    <div class="selector-div">
+                        <img id="puzzle-thumb" src="puzzles/panda.jpg" />
+                    </div>
+                    <div id="next-puzzle" class="button button-next button-enable"><img src="res/arrow_right.png" /></div>
+                    <p id="puzzle-label">Kongfu Panda</p>
+                </div>
+                <h2>Author : <a href="http://blog.perqin.com/" title="My Website" target="_blank">Perqin</a></h2>
+            </div>
+            <div id="loading-overlay" class="board-hidden board">
+                <div id="loading-indicator"></div>
+            </div>
         </div>
         <div id="button-row">
-            <div id="game-rankings" class="button">
-                <p>RANKINGS</p>
+            <div id="game-rankings" class="button button-main button-enable button-main-l">
+                <p id="game-rankings-label">RANKINGS</p>
             </div>
-            <div id="game-control" class="button">
+            <div id="game-control" class="button button-main button-enable button-main-m">
                 <p id="game-control-label">START</p>
             </div>
-            <div id="game-settings" class="button">
-                <p>SETTINGS</p>
+            <div id="game-settings" class="button button-main button-enable button-main-r">
+                <p id="game-settings-label">SETTINGS</p>
             </div>
         </div>
     </body>

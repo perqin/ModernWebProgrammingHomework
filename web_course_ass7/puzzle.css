@@ -9,12 +9,126 @@ h1 {
     margin: 26px;
 }
 
-#puzzle-board {
+#main-board {
     width: 352px;
     height: 352px;
     position: relative;
     left: 0; right: 0; margin-left: auto; margin-right: auto;
     box-shadow: 0 9px 18px 0 #7f7f7f;
+}
+
+.board {
+    position: absolute;
+    left: 0; right: 0;
+    width: 352px;
+    height: 352px;
+    background-color: #9C27B0;
+}
+
+.board-visible {
+    visibility: visible;
+    z-index: initial;
+}
+
+.board-hidden {
+    visibility: hidden;
+    z-index: -1;
+}
+
+/*
+@-webkit-keyframes loading-flip2 {
+    0% { -webkit-transform: rotateX(0deg),rotateY(0deg); }
+    25% { -webkit-transform: rotateX(180deg),rotateY(0deg); }
+    50% { -webkit-transform: rotateX(180deg),rotateY(180deg); }
+    75% { -webkit-transform: rotateX(0deg),rotateY(180deg); }
+    100% { -webkit-transform: rotateX(0deg),rotateY(0deg); }
+}
+*/
+
+@keyframes loading-flip {
+    0% { width: 40px; height: 40px; }
+    25% { width: 0px; height: 40px; }
+    50% { width: 40px; height: 40px; }
+    75% { width: 40px; height: 0px; }
+    100% { width: 40px; height: 40px; }
+}
+
+#loading-indicator {
+    width: 40px;
+    height: 40px;
+    position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: auto;
+    background-color: white;
+    animation-name: loading-flip;
+    animation-duration: 500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+#puzzle-board {
+    background-color: white;
+}
+
+#settings-board {
+    background-color: #7B1FA2;
+}
+
+#settings-board h2 {
+    clear: left;
+    text-align: center;
+    color: white;
+}
+
+#settings-board p {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#settings-board a {
+    color: white;
+}
+
+.settings-item {
+    width: 306px;
+    margin-left: auto; margin-right: auto;
+}
+
+#language-settings-item {
+    height: 42px;
+}
+
+#puzzle-settings-item {
+    height: 116px;
+}
+
+#puzzle-settings-item .button {
+    margin-top: 29px;
+}
+
+.selector-div {
+    width: 176px;
+    margin-left: 23px;
+    margin-right: 23px;
+    text-align: center;
+}
+
+.settings-item div {
+    display: inline-block;
+    float: left;
+}
+
+#language-label {
+    width: inherit;
+    height: 42px;
+    line-height: 42px;
+    margin-top: 0; margin-bottom: 0;
+}
+
+#puzzle-thumb {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
 }
 
 .tile {
@@ -34,15 +148,21 @@ h1 {
     height: auto;
     margin-left: auto; margin-right: auto;
     margin-top: 26px;
+    position: relative;
 }
 
 .button {
-    width: 100px;
-    display: inline-block;
-    background-color: #9C27B0;
-    float: left;
     box-shadow: 0 3px 6px 0 #7f7f7f;
     transition: all 300ms;
+    border-radius: 4px;
+}
+
+.button-enable {
+    background-color: #9C27B0;
+}
+
+.button-disable {
+    background-color: #9E9E9E;
 }
 
 .button p {
@@ -52,14 +172,53 @@ h1 {
     font-weight: bolder;
 }
 
-.button:hover {
+.button-enable:hover {
     box-shadow: 0 3px 12px 0 #7f7f7f;
+    background-color: #BA68C8;
 }
 
-.button:hover p {
+.button-enable:hover,.button-enable:hover p {
+    cursor: pointer;
 }
 
-#game-control {
-    margin-left: 26px;
-    margin-right: 26px;
+.button-disable:hover p {
+    cursor: default;
+}
+
+.button-main {
+    width: 100px;
+    position: absolute;
+    top: 0;
+}
+
+.button-main-l {
+    left: 0;
+}
+
+.button-main-m {
+    left: 126px;
+}
+
+.button-main-r {
+    left: 252px;
+}
+
+.button-main-hide {
+    transform: scale(0, 1);
+    left: -50px;
+}
+
+.button-main-long {
+    width: 352px;
+    left: 0;
+}
+
+.button-prev,.button-next {
+    width: 42px;
+    height: 42px;
+}
+
+.button-prev img,.button-next img {
+    width: 42px;
+    height: 42px;
 }
