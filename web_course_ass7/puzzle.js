@@ -2,20 +2,45 @@ var GameStateEnum = {
     GS_LOADING: "GS_LOADING",
     GS_PLAYING: "GS_PLAYING",
     GS_STOP: "GS_STOP"
-}, UNMOVEABLE = -1, ANIMATION_DURATION = 500,
+}, UNMOVEABLE = -1, ANIMATION_DURATION = 500, RANDOM_TIMES = 1000,
     GameState, TimeUsed, Timer, FullPuzzleImage, EmptyTilePosition, MatchedCount,
     PuzzleBorad, Tiles, RankingsButton, GameControlButton, SettingsButton, GameControlLabel;
 
 function randomizePosition() {
     "use strict";
-    var i, r, tmp, posArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-    for (i = 14; i >= 0; i -= 1) {
-        r = Math.floor(Math.random() * (i + 1));
-        tmp = posArr[r];
-        posArr[r] = posArr[i];
-        posArr[i] = tmp;
+    var i, r, tmp, posArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], empty = 15, dir;
+    // Improved randomize
+    for (i = 0; i < RANDOM_TIMES; i += 1) {
+        // Move direction of empty tile, 0 to 3 correspond to up, right, down, left
+        dir = Math.floor(Math.random() * 4);
+        if (dir === 0 && empty > 3) {
+            posArr[empty] = posArr[empty - 4];
+            empty -= 4;
+        }
+        if (dir === 1 && empty % 4 < 3) {
+            posArr[empty] = posArr[empty + 1];
+            empty += 1;
+        }
+        if (dir === 2 && empty < 12) {
+            posArr[empty] = posArr[empty + 4];
+            empty += 4;
+        }
+        if (dir === 3 && empty % 4 > 0) {
+            posArr[empty] = posArr[empty - 1];
+            empty -= 1;
+        }
+    }
+    // Move the empty to the right-bottom corner
+    while (empty < 12) {
+        posArr[empty] = posArr[empty + 4];
+        empty += 4;
+    }
+    while (empty % 4 < 3) {
+        posArr[empty] = posArr[empty + 1];
+        empty += 1;
     }
     for (i = 0; i < 15; i += 1) {
+        window.console.log(posArr[i]);
         Tiles[i].position = posArr[i];
         if (i === Tiles[i].position) {
             MatchedCount += 1;
@@ -50,18 +75,28 @@ function repositionTiles() {
     }
 }
 
+function startGame() {
+    "use strict";
+    MatchedCount = 0;
+    randomizePosition();
+    repositionTiles();
+    GameState = GameStateEnum.GS_PLAYING;
+    GameControlLabel.textContent = "STOP";
+}
+
+function stopGame() {
+    "use strict";
+    setTilesBack();
+    GameState = GameStateEnum.GS_STOP;
+    GameControlLabel.textContent = "START";
+}
+
 function startNewGame() {
     "use strict";
     if (GameState === GameStateEnum.GS_STOP) {
-        MatchedCount = 0;
-        randomizePosition();
-        repositionTiles();
-        GameState = GameStateEnum.GS_PLAYING;
-        GameControlLabel.textContent = "STOP";
+        startGame();
     } else {
-        setTilesBack();
-        GameState = GameStateEnum.GS_STOP;
-        GameControlLabel.textContent = "START";
+        stopGame();
     }
 }
 
@@ -126,10 +161,12 @@ function initElementsAndRt() {
     for (i = 0; i < 15; i += 1) {
         tile = document.createElement("canvas");
         tile.className = "tile";
+        // Set its attributes instead of style in order to avoid canvas draw bug
         tile.width = "88";
         tile.height = "88";
         t = Math.floor(i / 4) * 88;
         l = i % 4 * 88;
+        // As tile's position is dynamic, using css is unreasonable, so use js to control it
         tile.style.top = t.toString() + "px";
         tile.style.left = l.toString() + "px";
         tile.position = i;
@@ -137,7 +174,6 @@ function initElementsAndRt() {
         PuzzleBorad.appendChild(tile);
         Tiles.push(tile);
     }
-//    Tiles = PuzzleBorad.children;
     RankingsButton = document.getElementById("game-rankings");
     GameControlButton = document.getElementById("game-control");
     GameControlLabel = document.getElementById("game-control-label");
@@ -146,6 +182,7 @@ function initElementsAndRt() {
     FullPuzzleImage.onload = fullPuzzleLoaded;
     EmptyTilePosition = 15;
     MatchedCount = 15;
+    GameState = GameStateEnum.GS_STOP;
 }
 
 function dispatchEvents() {
