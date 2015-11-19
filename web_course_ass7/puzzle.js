@@ -9,9 +9,9 @@ var GameStateEnum = {
     LOADING: "LOADING"
 },
     UNMOVEABLE = -1, ANIMATION_DURATION = 500, RANDOM_TIMES = 1000,
-    GameState, CurrentBoard, TimeUsed, Timer, FullPuzzleImage, EmptyTilePosition, MatchedCount, PuzzleIndex, PuzzlesArray = [],
-    PuzzleBoard, SettingsBoard, LoadingScreen, Tiles, RankingsButton, GameControlButton, SettingsButton, PrevPuzzleButton, NextPuzzleButton, PuzzleThumbImage,
-    RankingsLabel, GameControlLabel, SettingsLabel, SelectedPuzzleLabel;
+    GameState, CurrentBoard, FullPuzzleImage, EmptyTilePosition, MatchedCount, PuzzleIndex, PuzzlesArray = [], Score,
+    PuzzleBoard, UploadScoreBoard, RankingsBoard, SettingsBoard, LoadingScreen, Tiles, RankingsButton, GameControlButton, SettingsButton, PrevPuzzleButton, NextPuzzleButton, PuzzleThumbImage, NameInput, UploadScoreButton, RankingsList,
+    UploadScoreLabel, RankingsLabel, GameControlLabel, SettingsLabel, SelectedPuzzleLabel, CurrentScoreLabel, WinScoreLabel;
 
 // Utils function - send http request and parse returned JSON into object
 function sendHttpRequest(method, url, data, onSucceed, onFail) {
@@ -57,6 +57,7 @@ function sendHttpRequest(method, url, data, onSucceed, onFail) {
 
 function loadFullPuzzle(url) {
     "use strict";
+    LoadingScreen.className = "board-visible board";
     FullPuzzleImage.src = url;
 }
 
@@ -176,6 +177,108 @@ function startNewGame() {
     } else {
         stopGame();
     }
+    Score = 10000;
+    CurrentScoreLabel.textContent = "你的分数：" + Score.toString();
+}
+
+function winGame() {
+    "use strict";
+    stopGame();
+    CurrentBoard = Boards.UPLOAD;
+    UploadScoreBoard.className = "board-visible board";
+    UploadScoreButton.className = "button button-enable";
+    UploadScoreLabel.textContent = "上传分数";
+    WinScoreLabel.textContent = "你的分数：" + Score.toString();
+}
+
+function scoreUploaded() {
+    "use strict";
+    UploadScoreBoard.className = "board-hidden board";
+    Score = 10000;
+    CurrentScoreLabel.textContent = "你的分数：" + Score.toString();
+}
+
+function uploadScore() {
+    "use strict";
+    UploadScoreButton.className = "button button-disable";
+    UploadScoreLabel.textContent = "上传中";
+    sendHttpRequest("GET", "http://perqin.com/mwp/puzzle/api.php", null, scoreUploaded, function () {
+        window.alert("上传分数失败了2333");
+        UploadScoreBoard.className = "board-hidden board";
+    });
+}
+
+function updateRankingsList(data) {
+    "use strict";
+    var i, listRankings, listPlayer, listScore, listItem;
+    // Remove old table item
+    while (RankingsList.lastChild) {
+        RankingsList.removeChild(RankingsList.lastChild);
+    }
+    // Add table headers
+    listRankings = document.createElement("th");
+    listRankings.textContent = "排名";
+    listRankings.classList.add("rankings-list-column-narrow");
+    listPlayer = document.createElement("th");
+    listPlayer.textContent = "玩家";
+    listPlayer.classList.add("rankings-list-column-wide");
+    listScore = document.createElement("th");
+    listScore.textContent = "分数";
+    listScore.classList.add("rankings-list-column-narrow");
+    listItem = document.createElement("tr");
+    listItem.appendChild(listRankings);
+    listItem.appendChild(listPlayer);
+    listItem.appendChild(listScore);
+    RankingsList.appendChild(listItem);
+    for (i = 0; i < data.rankings.length; i += 1) {
+        listRankings = document.createElement("td");
+        listRankings.textContent = (i + 1).toString();
+        listRankings.classList.add("rankings-list-column-narrow");
+        listPlayer = document.createElement("td");
+        listPlayer.textContent = data.rankings[i].player;
+        listPlayer.classList.add("rankings-list-column-wide");
+        listScore = document.createElement("td");
+        listScore.textContent = data.rankings[i].score;
+        listScore.classList.add("rankings-list-column-narrow");
+        listItem = document.createElement("tr");
+        listItem.appendChild(listRankings);
+        listItem.appendChild(listPlayer);
+        listItem.appendChild(listScore);
+        RankingsList.appendChild(listItem);
+    }
+    hideLoadingScreen();
+}
+
+function loadRankings() {
+    "use strict";
+    showLoadingScreen();
+    sendHttpRequest("GET", "http://perqin.com/mwp/puzzle/api.php?method=rankings", null, updateRankingsList, function () {
+        window.alert("加载排行榜失败Orz");
+        hideLoadingScreen();
+    });
+}
+
+function openRankings() {
+    "use strict";
+    if (GameState !== GameStateEnum.GS_STOP) {
+        return;
+    }
+    if (CurrentBoard === Boards.RANKINGS) {
+        CurrentBoard = Boards.PUZZLE;
+        RankingsBoard.className = "board-hidden board";
+        RankingsButton.className = "button button-main button-enable button-main-l";
+        GameControlButton.className = "button button-main button-enable button-main-m";
+        SettingsButton.className = "button button-main button-enable button-main-r";
+        RankingsLabel.textContent = "设置";
+    } else {
+        CurrentBoard = Boards.RANKINGS;
+        RankingsBoard.className = "board-visible board";
+        RankingsButton.className = "button button-main button-enable button-main-long";
+        GameControlButton.className = "button button-main button-disable button-main-hide-r";
+        SettingsButton.className = "button button-main button-disable button-main-hide-r";
+        RankingsLabel.textContent = "返回";
+        loadRankings();
+    }
 }
 
 function updatePrevNextButtons() {
@@ -188,6 +291,7 @@ function selectPuzzle(index) {
     "use strict";
     if (index >= 0 && index < PuzzlesArray.length) {
         PuzzleThumbImage.src = PuzzlesArray[index].thumb;
+        SelectedPuzzleLabel.textContent = PuzzlesArray[index].title;
         loadFullPuzzle(PuzzlesArray[index].full_image);
         PuzzleIndex = index;
     }
@@ -219,7 +323,7 @@ function updatePuzzlesArray(data) {
 function loadSettings() {
     "use strict";
     showLoadingScreen();
-    sendHttpRequest("POST", "http://perqin.com/mwp/puzzle/puzzles/api.php", "", updatePuzzlesArray, function () {
+    sendHttpRequest("GET", "http://perqin.com/mwp/puzzle/api.php?method=puzzles", null, updatePuzzlesArray, function () {
         window.alert("加载拼图列表失败QAQ");
         updatePrevNextButtons();
         hideLoadingScreen();
@@ -241,8 +345,8 @@ function openSettings() {
     } else {
         CurrentBoard = Boards.SETTINGS;
         SettingsBoard.className = "board-visible board";
-        RankingsButton.className = "button button-main button-disable button-main-hide";
-        GameControlButton.className = "button button-main button-disable button-main-hide";
+        RankingsButton.className = "button button-main button-disable button-main-hide-l";
+        GameControlButton.className = "button button-main button-disable button-main-hide-l";
         SettingsButton.className = "button button-main button-enable button-main-long";
         SettingsLabel.textContent = "返回";
         loadSettings();
@@ -280,8 +384,10 @@ function tileClicked(event) {
     if (Tiles.indexOf(event.target) === event.target.position) {
         MatchedCount += 1;
     }
+    Score -= 1;
+    CurrentScoreLabel.textContent = "你的分数：" + Score.toString();
     if (MatchedCount === 15) {
-        window.console.log("WIN!!!");
+        winGame();
     }
 }
 
@@ -292,6 +398,7 @@ function fullPuzzleLoaded() {
         context = Tiles[i].getContext("2d");
         context.drawImage(FullPuzzleImage, i % 4 * 88, Math.floor(i / 4) * 88, 88, 88, 0, 0, 88, 88);
     }
+    LoadingScreen.className = "board-hidden board";
 }
 
 function initElementsAndRt() {
@@ -299,6 +406,8 @@ function initElementsAndRt() {
     var i, tile, t, l;
     Tiles = [];
     PuzzleBoard = document.getElementById("puzzle-board");
+    UploadScoreBoard = document.getElementById("win-board");
+    RankingsBoard = document.getElementById("rankings-board");
     SettingsBoard = document.getElementById("settings-board");
     LoadingScreen = document.getElementById("loading-overlay");
     for (i = 0; i < 15; i += 1) {
@@ -326,10 +435,19 @@ function initElementsAndRt() {
     PrevPuzzleButton = document.getElementById("prev-puzzle");
     NextPuzzleButton = document.getElementById("next-puzzle");
     PuzzleThumbImage = document.getElementById("puzzle-thumb");
+    SelectedPuzzleLabel = document.getElementById("puzzle-label");
+    UploadScoreButton = document.getElementById("upload-score");
+    CurrentScoreLabel = document.getElementById("your-score");
+    WinScoreLabel = document.getElementById("win-score");
+    UploadScoreLabel = document.getElementById("upload-score-label");
+    RankingsList = document.getElementById("rankings-list");
     FullPuzzleImage = new Image();
     FullPuzzleImage.onload = fullPuzzleLoaded;
     EmptyTilePosition = 15;
     MatchedCount = 15;
+    PuzzleIndex = 0;
+    Score = 10000;
+    CurrentScoreLabel.textContent = "你的分数：" + Score.toString();
     GameState = GameStateEnum.GS_STOP;
     CurrentBoard = Boards.PUZZLE;
 }
@@ -342,10 +460,12 @@ function onPMouseDown(event) {
 function dispatchEvents() {
     "use strict";
     var ps, i;
+    RankingsButton.onclick = openRankings;
     GameControlButton.onclick = startNewGame;
     SettingsButton.onclick = openSettings;
     PrevPuzzleButton.onclick = prevPuzzle;
     NextPuzzleButton.onclick = nextPuzzle;
+    UploadScoreButton.onclick = uploadScore;
     // Prevent double-click text selection
     ps = document.getElementsByTagName("p");
     for (i = 0; i < ps.length; i += 1) {

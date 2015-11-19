@@ -7,9 +7,22 @@
     </head>
     <body>
         <h1>Fifteen Puzzle</h1>
+        <h2 id="your-score">你的分数：</h2>
         <div id="main-board">
             <div id="puzzle-board" class="board-visible board"></div>
-            <div id="rankings-board" class="board-hidden board"></div>
+            <div id="win-board" class="board-hidden board">
+                <h2>666，你居然赢了！</h2>
+                <p id="win-score">你的分数：</p>
+                <h2>你的名字</h2>
+                <input id="player-name" type="text" value="未命名"/>
+                <div id="upload-score" class="button button-enable">
+                    <p id="upload-score-label">上传分数</p>
+                </div>
+            </div>
+            <div id="rankings-board" class="board-hidden board">
+                <h2>线上排行榜</h2>
+                <table id="rankings-list"></table>
+            </div>
             <div id="settings-board" class="board-hidden board">
                 <h2>选择拼图</h2>
                 <div id="puzzle-settings-item" class="settings-item">

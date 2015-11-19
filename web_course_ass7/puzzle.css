@@ -7,6 +7,13 @@ body {
 h1 {
     text-align: center;
     margin: 26px;
+    color: #9C27B0;
+}
+
+#your-score {
+    text-align: center;
+    font-size: 21px;
+    color: #7B1FA2;
 }
 
 #main-board {
@@ -68,11 +75,73 @@ h1 {
     background-color: white;
 }
 
-#settings-board {
+#win-board p {
+    color: white;
+    text-align: center;
+}
+
+#player-name {
+    display: block;
+    width: 192px;
+    height: 36px;
+    line-height: 36px;
+    margin: auto;
+    background-color: #7B1FA2;
+    color: white;
+    text-align: center;
+    font-family: "微软雅黑","黑体","sans-serif","等线";
+    font-size: 18px;
+    border-style: solid;
+    border-width: 0 0 4px 0;
+    border-color: #9C27B0;
+}
+
+#upload-score {
+    width: 128px;
+    height: 48px;
+    margin: auto;
+}
+
+#upload-score p {
+    line-height: 48px;
+}
+
+#settings-board,#win-board {
     background-color: #7B1FA2;
 }
 
-#settings-board h2 {
+#rankings-board h2 {
+    margin-top: 20px;
+}
+
+#rankings-board table {
+    margin-left: auto; margin-right: auto;
+    overflow: auto;
+/*
+    overflow-y: scroll;
+    height: 180px;
+*/
+}
+
+#rankings-board th,#rankings-board td {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+#rankings-board th {
+    font-weight: bold;
+}
+
+.rankings-list-column-narrow {
+    width: 60px;
+}
+
+.rankings-list-column-wide {
+    width: 120px;
+}
+
+.board h2 {
     clear: left;
     text-align: center;
     color: white;
@@ -198,9 +267,14 @@ h1 {
     left: 252px;
 }
 
-.button-main-hide {
+.button-main-hide-l {
     transform: scale(0, 1);
     left: -50px;
+}
+
+.button-main-hide-r {
+    transform: scale(0, 1);
+    left: 302px;
 }
 
 .button-main-long {
