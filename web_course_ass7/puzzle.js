@@ -7,28 +7,11 @@ var GameStateEnum = {
     PUZZLE: "PUZZLE",
     RANKINGS: "RANKINGS",
     LOADING: "LOADING"
-}, Lang = ["CN", "EN"], LngSrc = [
-    {
-        settings: "设置",
-        back: "返回",
-        language: "简体中文"
-    },
-    {
-        settings: "SETTINGS",
-        back: "BACK",
-        language: "English"
-    }
-],
+},
     UNMOVEABLE = -1, ANIMATION_DURATION = 500, RANDOM_TIMES = 1000,
-    GameState, CurrentBoard, TimeUsed, Timer, FullPuzzleImage, EmptyTilePosition, MatchedCount, LanguageIndex, PuzzleIndex,
-    PuzzleBoard, SettingsBoard, LoadingScreen, Tiles, RankingsButton, GameControlButton, SettingsButton, PrevLanguageButton, NextLanguageButton, prevPuzzleButton, NextPuzzleButton,
-    RankingsLabel, GameControlLabel, SettingsLabel, DisplayLanguageLabel, LanguageLabel;
-
-// Utils function - get translation
-function tr(key) {
-    "use strict";
-    return LngSrc[LanguageIndex][key];
-}
+    GameState, CurrentBoard, TimeUsed, Timer, FullPuzzleImage, EmptyTilePosition, MatchedCount, PuzzleIndex, PuzzlesArray = [],
+    PuzzleBoard, SettingsBoard, LoadingScreen, Tiles, RankingsButton, GameControlButton, SettingsButton, PrevPuzzleButton, NextPuzzleButton, PuzzleThumbImage,
+    RankingsLabel, GameControlLabel, SettingsLabel, SelectedPuzzleLabel;
 
 // Utils function - send http request and parse returned JSON into object
 function sendHttpRequest(method, url, data, onSucceed, onFail) {
@@ -70,6 +53,11 @@ function sendHttpRequest(method, url, data, onSucceed, onFail) {
         xhr.setRequestHeader("Content-Length", data.length);
         xhr.send(data);
     }
+}
+
+function loadFullPuzzle(url) {
+    "use strict";
+    FullPuzzleImage.src = url;
 }
 
 // DEBUG FUNC
@@ -167,7 +155,7 @@ function startGame() {
     randomizePosition();
     repositionTiles();
     GameState = GameStateEnum.GS_PLAYING;
-    GameControlLabel.textContent = "STOP";
+    GameControlLabel.textContent = "认输";
     RankingsButton.className = "button button-main button-disable button-main-l";
     SettingsButton.className = "button button-main button-disable button-main-r";
 }
@@ -176,7 +164,7 @@ function stopGame() {
     "use strict";
     setTilesBack();
     GameState = GameStateEnum.GS_STOP;
-    GameControlLabel.textContent = "START";
+    GameControlLabel.textContent = "开始";
     RankingsButton.className = "button button-main button-enable button-main-l";
     SettingsButton.className = "button button-main button-enable button-main-r";
 }
@@ -190,37 +178,52 @@ function startNewGame() {
     }
 }
 
-function updateLanguage() {
-    "use strict";
-    // TODO
-}
-
 function updatePrevNextButtons() {
     "use strict";
-    PrevLanguageButton.className = "button button-prev button-" + (LanguageIndex === 0 ? "disable" : "enable");
-    NextLanguageButton.className = "button button-next button-" + (LanguageIndex === Lang.length - 1 ? "disable" : "enable");
+    PrevPuzzleButton.className = "button button-prev button-" + (PuzzleIndex === 0 ? "disable" : "enable");
+    NextPuzzleButton.className = "button button-next button-" + ((PuzzleIndex === PuzzlesArray.length - 1 || PuzzlesArray.length === 0) ? "disable" : "enable");
 }
 
-function prevLanguage() {
+function selectPuzzle(index) {
     "use strict";
-    LanguageIndex -= 1;
-    updatePrevNextButtons();
-    updateLanguage();
+    if (index >= 0 && index < PuzzlesArray.length) {
+        PuzzleThumbImage.src = PuzzlesArray[index].thumb;
+        loadFullPuzzle(PuzzlesArray[index].full_image);
+        PuzzleIndex = index;
+    }
 }
 
-function nextLanguage() {
+function prevPuzzle() {
     "use strict";
-    LanguageIndex += 1;
+    selectPuzzle(PuzzleIndex - 1);
     updatePrevNextButtons();
-    updateLanguage();
+}
+
+function nextPuzzle() {
+    "use strict";
+    selectPuzzle(PuzzleIndex + 1);
+    updatePrevNextButtons();
+}
+
+function updatePuzzlesArray(data) {
+    "use strict";
+    PuzzlesArray = data.puzzles;
+    if (PuzzleIndex >= PuzzlesArray.length) {
+        PuzzleIndex = 0;
+    }
+    selectPuzzle(PuzzleIndex);
+    updatePrevNextButtons();
+    hideLoadingScreen();
 }
 
 function loadSettings() {
     "use strict";
     showLoadingScreen();
-    updatePrevNextButtons();
-    // TODO
-    hideLoadingScreen();
+    sendHttpRequest("POST", "http://perqin.com/mwp/puzzle/puzzles/api.php", "", updatePuzzlesArray, function () {
+        window.alert("加载拼图列表失败QAQ");
+        updatePrevNextButtons();
+        hideLoadingScreen();
+    });
 }
 
 function openSettings() {
@@ -234,14 +237,14 @@ function openSettings() {
         RankingsButton.className = "button button-main button-enable button-main-l";
         GameControlButton.className = "button button-main button-enable button-main-m";
         SettingsButton.className = "button button-main button-enable button-main-r";
-        SettingsLabel.textContent = tr("settings");
+        SettingsLabel.textContent = "设置";
     } else {
         CurrentBoard = Boards.SETTINGS;
         SettingsBoard.className = "board-visible board";
         RankingsButton.className = "button button-main button-disable button-main-hide";
         GameControlButton.className = "button button-main button-disable button-main-hide";
         SettingsButton.className = "button button-main button-enable button-main-long";
-        SettingsLabel.textContent = tr("back");
+        SettingsLabel.textContent = "返回";
         loadSettings();
     }
 }
@@ -280,12 +283,6 @@ function tileClicked(event) {
     if (MatchedCount === 15) {
         window.console.log("WIN!!!");
     }
-//    dAllPosition();
-}
-
-function loadFullPuzzle(url) {
-    "use strict";
-    FullPuzzleImage.src = url;
 }
 
 function fullPuzzleLoaded() {
@@ -326,14 +323,13 @@ function initElementsAndRt() {
     GameControlLabel = document.getElementById("game-control-label");
     SettingsButton = document.getElementById("game-settings");
     SettingsLabel = document.getElementById("game-settings-label");
-    LanguageLabel = document.getElementById("language-label");
-    PrevLanguageButton = document.getElementById("prev-lang");
-    NextLanguageButton = document.getElementById("next-lang");
+    PrevPuzzleButton = document.getElementById("prev-puzzle");
+    NextPuzzleButton = document.getElementById("next-puzzle");
+    PuzzleThumbImage = document.getElementById("puzzle-thumb");
     FullPuzzleImage = new Image();
     FullPuzzleImage.onload = fullPuzzleLoaded;
     EmptyTilePosition = 15;
     MatchedCount = 15;
-    LanguageIndex = 0;
     GameState = GameStateEnum.GS_STOP;
     CurrentBoard = Boards.PUZZLE;
 }
@@ -348,6 +344,8 @@ function dispatchEvents() {
     var ps, i;
     GameControlButton.onclick = startNewGame;
     SettingsButton.onclick = openSettings;
+    PrevPuzzleButton.onclick = prevPuzzle;
+    NextPuzzleButton.onclick = nextPuzzle;
     // Prevent double-click text selection
     ps = document.getElementsByTagName("p");
     for (i = 0; i < ps.length; i += 1) {
