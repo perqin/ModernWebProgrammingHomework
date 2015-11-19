@@ -94,9 +94,11 @@ h1 {
     margin-left: auto; margin-right: auto;
 }
 
+/*
 #language-settings-item {
     height: 42px;
 }
+*/
 
 #puzzle-settings-item {
     height: 116px;
@@ -118,12 +120,14 @@ h1 {
     float: left;
 }
 
+/*
 #language-label {
     width: inherit;
     height: 42px;
     line-height: 42px;
     margin-top: 0; margin-bottom: 0;
 }
+*/
 
 #puzzle-thumb {
     width: 100px;

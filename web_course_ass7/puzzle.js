@@ -21,7 +21,8 @@ var GameStateEnum = {
 ],
     UNMOVEABLE = -1, ANIMATION_DURATION = 500, RANDOM_TIMES = 1000,
     GameState, CurrentBoard, TimeUsed, Timer, FullPuzzleImage, EmptyTilePosition, MatchedCount, LanguageIndex, PuzzleIndex,
-    PuzzleBoard, SettingsBoard, LoadingScreen, Tiles, RankingsButton, GameControlButton, SettingsButton, RankingsLabel, GameControlLabel, SettingsLabel, LanguageLabel, PrevLanguageButton, NextLanguageButton, prevPuzzleButton, NextPuzzleButton;
+    PuzzleBoard, SettingsBoard, LoadingScreen, Tiles, RankingsButton, GameControlButton, SettingsButton, PrevLanguageButton, NextLanguageButton, prevPuzzleButton, NextPuzzleButton,
+    RankingsLabel, GameControlLabel, SettingsLabel, DisplayLanguageLabel, LanguageLabel;
 
 // Utils function - get translation
 function tr(key) {
@@ -71,6 +72,16 @@ function sendHttpRequest(method, url, data, onSucceed, onFail) {
     }
 }
 
+// DEBUG FUNC
+function dAllPosition() {
+    "use strict";
+    var i, d = "";
+    for (i = 0; i < 15; i += 1) {
+        d = d + " " + Tiles[i].position;
+    }
+    window.console.log(d);
+}
+
 function showLoadingScreen() {
     "use strict";
     LoadingScreen.className = "board-visible board";
@@ -115,7 +126,6 @@ function randomizePosition() {
         empty += 1;
     }
     for (i = 0; i < 15; i += 1) {
-        window.console.log(posArr[i]);
         Tiles[i].position = posArr[i];
         if (i === Tiles[i].position) {
             MatchedCount += 1;
@@ -153,6 +163,7 @@ function repositionTiles() {
 function startGame() {
     "use strict";
     MatchedCount = 0;
+    EmptyTilePosition = 15;
     randomizePosition();
     repositionTiles();
     GameState = GameStateEnum.GS_PLAYING;
@@ -184,28 +195,30 @@ function updateLanguage() {
     // TODO
 }
 
+function updatePrevNextButtons() {
+    "use strict";
+    PrevLanguageButton.className = "button button-prev button-" + (LanguageIndex === 0 ? "disable" : "enable");
+    NextLanguageButton.className = "button button-next button-" + (LanguageIndex === Lang.length - 1 ? "disable" : "enable");
+}
+
 function prevLanguage() {
     "use strict";
     LanguageIndex -= 1;
-    PrevLanguageButton.className = "button button-prev button-" + (LanguageIndex === 0 ? "disable" : "enable");
-    NextLanguageButton.className = "button button-next button-" + (LanguageIndex === Lang.length - 1 ? "disable" : "enable");
+    updatePrevNextButtons();
     updateLanguage();
 }
 
 function nextLanguage() {
     "use strict";
     LanguageIndex += 1;
-    PrevLanguageButton.className = "button button-prev button-" + (LanguageIndex === 0 ? "disable" : "enable");
-    NextLanguageButton.className = "button button-next button-" + (LanguageIndex === Lang.length - 1 ? "disable" : "enable");
+    updatePrevNextButtons();
     updateLanguage();
 }
 
 function loadSettings() {
     "use strict";
     showLoadingScreen();
-    LanguageLabel.textContent = tr("language");
-    PrevLanguageButton.className = "button button-prev button-" + (LanguageIndex === 0 ? "disable" : "enable");
-    NextLanguageButton.className = "button button-next button-" + (LanguageIndex === Lang.length - 1 ? "disable" : "enable");
+    updatePrevNextButtons();
     // TODO
     hideLoadingScreen();
 }
@@ -243,9 +256,6 @@ function getMovedTo(pos) {
     }
     return UNMOVEABLE;
 }
-function animateTileMovement(tile) {
-    "use strict";
-}
 
 function tileClicked(event) {
     "use strict";
@@ -270,6 +280,7 @@ function tileClicked(event) {
     if (MatchedCount === 15) {
         window.console.log("WIN!!!");
     }
+//    dAllPosition();
 }
 
 function loadFullPuzzle(url) {
