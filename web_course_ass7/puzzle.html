@@ -4,6 +4,7 @@
         <link rel="stylesheet" type="text/css" href="puzzle.css"/>
         <script type="text/javascript" src="puzzle.js"></script>
         <title>Fifteen Puzzle</title>
+        <link rel="icon" type="image/png" href="res/icon.png"/>
     </head>
     <body>
         <h1>Fifteen Puzzle</h1>
@@ -21,7 +22,18 @@
             </div>
             <div id="rankings-board" class="board-hidden board">
                 <h2>线上排行榜</h2>
-                <table id="rankings-list"></table>
+                <div id="scrollable-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="rankings-list-column-narrow">排名</th>
+                                <th class="rankings-list-column-wide">玩家</th>
+                                <th class="rankings-list-column-narrow">分数</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rankings-list"></tbody>
+                    </table>
+                </div>
             </div>
             <div id="settings-board" class="board-hidden board">
                 <h2>选择拼图</h2>
@@ -36,7 +48,11 @@
                 <h2>作者：<a href="http://blog.perqin.com/" title="My Website" target="_blank">沛秦</a></h2>
             </div>
             <div id="loading-overlay" class="board-hidden board">
-                <div id="loading-indicator"></div>
+                <div id="indicator-container">
+                    <div id="indicator-1" class="indicator"></div>
+                    <div id="indicator-2" class="indicator"></div>
+                    <div id="indicator-3" class="indicator"></div>
+                </div>
             </div>
         </div>
         <div id="button-row">
@@ -50,5 +66,6 @@
                 <p id="game-settings-label">设置</p>
             </div>
         </div>
+        <p id="about"><a href="http://blog.perqin.com/index.php/2015/11/20/about-fifteen-puzzle-game/" target="_blank" title="关于这个游戏">关于这个游戏</a></p>
     </body>
 </html>

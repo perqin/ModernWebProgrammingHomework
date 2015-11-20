@@ -49,8 +49,7 @@ function sendHttpRequest(method, url, data, onSucceed, onFail) {
     }
     if (method === "POST") {
         xhr.open("POST", url);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.setRequestHeader("Content-Length", data.length);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.send(data);
     }
 }
@@ -189,6 +188,12 @@ function winGame() {
     UploadScoreButton.className = "button button-enable";
     UploadScoreLabel.textContent = "上传分数";
     WinScoreLabel.textContent = "你的分数：" + Score.toString();
+    NameInput.disabled = false;
+}
+
+function validatePlayer() {
+    "use strict";
+    NameInput.value = NameInput.value.replace(/[^\u4e00-\u9fa5_a-zA-Z0-9]/g, "");
 }
 
 function scoreUploaded() {
@@ -200,9 +205,13 @@ function scoreUploaded() {
 
 function uploadScore() {
     "use strict";
+    var postParams;
+    NameInput.disabled = true;
     UploadScoreButton.className = "button button-disable";
     UploadScoreLabel.textContent = "上传中";
-    sendHttpRequest("GET", "http://perqin.com/mwp/puzzle/api.php", null, scoreUploaded, function () {
+    validatePlayer();
+    postParams = "method=upload&player=" + NameInput.value + "&score=" + Score.toString();
+    sendHttpRequest("POST", "http://perqin.com/mwp/puzzle/api.php", postParams, scoreUploaded, function () {
         window.alert("上传分数失败了2333");
         UploadScoreBoard.className = "board-hidden board";
     });
@@ -215,21 +224,6 @@ function updateRankingsList(data) {
     while (RankingsList.lastChild) {
         RankingsList.removeChild(RankingsList.lastChild);
     }
-    // Add table headers
-    listRankings = document.createElement("th");
-    listRankings.textContent = "排名";
-    listRankings.classList.add("rankings-list-column-narrow");
-    listPlayer = document.createElement("th");
-    listPlayer.textContent = "玩家";
-    listPlayer.classList.add("rankings-list-column-wide");
-    listScore = document.createElement("th");
-    listScore.textContent = "分数";
-    listScore.classList.add("rankings-list-column-narrow");
-    listItem = document.createElement("tr");
-    listItem.appendChild(listRankings);
-    listItem.appendChild(listPlayer);
-    listItem.appendChild(listScore);
-    RankingsList.appendChild(listItem);
     for (i = 0; i < data.rankings.length; i += 1) {
         listRankings = document.createElement("td");
         listRankings.textContent = (i + 1).toString();
@@ -269,7 +263,7 @@ function openRankings() {
         RankingsButton.className = "button button-main button-enable button-main-l";
         GameControlButton.className = "button button-main button-enable button-main-m";
         SettingsButton.className = "button button-main button-enable button-main-r";
-        RankingsLabel.textContent = "设置";
+        RankingsLabel.textContent = "线上排行";
     } else {
         CurrentBoard = Boards.RANKINGS;
         RankingsBoard.className = "board-visible board";
@@ -441,6 +435,7 @@ function initElementsAndRt() {
     WinScoreLabel = document.getElementById("win-score");
     UploadScoreLabel = document.getElementById("upload-score-label");
     RankingsList = document.getElementById("rankings-list");
+    NameInput = document.getElementById("player-name");
     FullPuzzleImage = new Image();
     FullPuzzleImage.onload = fullPuzzleLoaded;
     EmptyTilePosition = 15;

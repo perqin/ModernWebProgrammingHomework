@@ -42,33 +42,57 @@ h1 {
     z-index: -1;
 }
 
-/*
-@-webkit-keyframes loading-flip2 {
-    0% { -webkit-transform: rotateX(0deg),rotateY(0deg); }
-    25% { -webkit-transform: rotateX(180deg),rotateY(0deg); }
-    50% { -webkit-transform: rotateX(180deg),rotateY(180deg); }
-    75% { -webkit-transform: rotateX(0deg),rotateY(180deg); }
-    100% { -webkit-transform: rotateX(0deg),rotateY(0deg); }
-}
-*/
-
-@keyframes loading-flip {
-    0% { width: 40px; height: 40px; }
-    25% { width: 0px; height: 40px; }
-    50% { width: 40px; height: 40px; }
-    75% { width: 40px; height: 0px; }
-    100% { width: 40px; height: 40px; }
-}
-
-#loading-indicator {
-    width: 40px;
-    height: 40px;
+#indicator-container {
+    width: 45px;
+    height: 45px;
     position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: auto;
+}
+
+.indicator {
+    width: 20px;
+    height: 20px;
     background-color: white;
-    animation-name: loading-flip;
-    animation-duration: 500ms;
+    position: absolute;
+    animation-duration: 1200ms;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+}
+
+@keyframes loading-tile {
+    0% { top: 0px; left: 25px; }
+    8% { top: 25px; left: 25px; }
+    16% { top: 25px; left: 25px; }
+    25% { top: 25px; left: 25px; }
+    33% { top: 25px; left: 0px; }
+    41% { top: 25px; left: 0px; }
+    50% { top: 25px; left: 0px; }
+    58% { top: 0px; left: 0px; }
+    67% { top: 0px; left: 0px; }
+    75% { top: 0px; left: 0px; }
+    83% { top: 0px; left: 25px; }
+    91% { top: 0px; left: 25px; }
+    100% { top: 0px; left: 25px; }
+}
+
+#indicator-1 {
+    top: 0;
+    left: 0;
+    animation-name: loading-tile;
+    animation-delay: -800ms;
+}
+
+#indicator-2 {
+    top: 0;
+    left: 25px;
+    animation-name: loading-tile;
+    animation-delay: 0ms;
+}
+
+#indicator-3 {
+    top: 25px;
+    left: 0;
+    animation-name: loading-tile;
+    animation-delay: -400ms;
 }
 
 #puzzle-board {
@@ -114,13 +138,19 @@ h1 {
     margin-top: 20px;
 }
 
-#rankings-board table {
+#scrollable-wrapper table {
     margin-left: auto; margin-right: auto;
+    display: table;
+}
+
+#scrollable-wrapper thead,#scrollable-wrapper tbody {
+    float: left;
+    width: 100%;
+}
+
+#scrollable-wrapper tbody {
     overflow: auto;
-/*
-    overflow-y: scroll;
-    height: 180px;
-*/
+    height: 240px;
 }
 
 #rankings-board th,#rankings-board td {
@@ -138,7 +168,7 @@ h1 {
 }
 
 .rankings-list-column-wide {
-    width: 120px;
+    width: 200px;
 }
 
 .board h2 {
@@ -209,7 +239,7 @@ h1 {
 
 #button-row {
     width: 352px;
-    height: auto;
+    height: 56px;
     margin-left: auto; margin-right: auto;
     margin-top: 26px;
     position: relative;
@@ -290,4 +320,12 @@ h1 {
 .button-prev img,.button-next img {
     width: 42px;
     height: 42px;
+}
+
+#about {
+    text-align: center;
+}
+
+#about a {
+    color: #7B1FA2;
 }
