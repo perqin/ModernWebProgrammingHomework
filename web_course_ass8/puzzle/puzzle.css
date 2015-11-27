@@ -1,0 +1,331 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-width: 400px;
+}
+
+h1 {
+    text-align: center;
+    margin: 26px;
+    color: #9C27B0;
+}
+
+#your-score {
+    text-align: center;
+    font-size: 21px;
+    color: #7B1FA2;
+}
+
+#main-board {
+    width: 352px;
+    height: 352px;
+    position: relative;
+    left: 0; right: 0; margin-left: auto; margin-right: auto;
+    box-shadow: 0 9px 18px 0 #7f7f7f;
+}
+
+.board {
+    position: absolute;
+    left: 0; right: 0;
+    width: 352px;
+    height: 352px;
+    background-color: #9C27B0;
+}
+
+.board-visible {
+    visibility: visible;
+    z-index: initial;
+}
+
+.board-hidden {
+    visibility: hidden;
+    z-index: -1;
+}
+
+#indicator-container {
+    width: 45px;
+    height: 45px;
+    position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: auto;
+}
+
+.indicator {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    position: absolute;
+    animation-duration: 1200ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes loading-tile {
+    0% { top: 0px; left: 25px; }
+    8% { top: 25px; left: 25px; }
+    16% { top: 25px; left: 25px; }
+    25% { top: 25px; left: 25px; }
+    33% { top: 25px; left: 0px; }
+    41% { top: 25px; left: 0px; }
+    50% { top: 25px; left: 0px; }
+    58% { top: 0px; left: 0px; }
+    67% { top: 0px; left: 0px; }
+    75% { top: 0px; left: 0px; }
+    83% { top: 0px; left: 25px; }
+    91% { top: 0px; left: 25px; }
+    100% { top: 0px; left: 25px; }
+}
+
+#indicator-1 {
+    top: 0;
+    left: 0;
+    animation-name: loading-tile;
+    animation-delay: -800ms;
+}
+
+#indicator-2 {
+    top: 0;
+    left: 25px;
+    animation-name: loading-tile;
+    animation-delay: 0ms;
+}
+
+#indicator-3 {
+    top: 25px;
+    left: 0;
+    animation-name: loading-tile;
+    animation-delay: -400ms;
+}
+
+#puzzle-board {
+    background-color: white;
+}
+
+#win-board p {
+    color: white;
+    text-align: center;
+}
+
+#player-name {
+    display: block;
+    width: 192px;
+    height: 36px;
+    line-height: 36px;
+    margin: auto;
+    background-color: #7B1FA2;
+    color: white;
+    text-align: center;
+    font-family: "微软雅黑","黑体","sans-serif","等线";
+    font-size: 18px;
+    border-style: solid;
+    border-width: 0 0 4px 0;
+    border-color: #9C27B0;
+}
+
+#upload-score {
+    width: 128px;
+    height: 48px;
+    margin: auto;
+}
+
+#upload-score p {
+    line-height: 48px;
+}
+
+#settings-board,#win-board {
+    background-color: #7B1FA2;
+}
+
+#rankings-board h2 {
+    margin-top: 20px;
+}
+
+#scrollable-wrapper table {
+    margin-left: auto; margin-right: auto;
+    display: table;
+}
+
+#scrollable-wrapper thead,#scrollable-wrapper tbody {
+    float: left;
+    width: 100%;
+}
+
+#scrollable-wrapper tbody {
+    overflow: auto;
+    height: 240px;
+}
+
+#rankings-board th,#rankings-board td {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+#rankings-board th {
+    font-weight: bold;
+}
+
+.rankings-list-column-narrow {
+    width: 60px;
+}
+
+.rankings-list-column-wide {
+    width: 200px;
+}
+
+.board h2 {
+    clear: left;
+    text-align: center;
+    color: white;
+    margin-top: 56px;
+}
+
+#settings-board p {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#settings-board a {
+    color: white;
+}
+
+.settings-item {
+    width: 306px;
+    margin-left: auto; margin-right: auto;
+}
+
+#puzzle-settings-item {
+    height: 116px;
+}
+
+#puzzle-settings-item .button {
+    margin-top: 29px;
+}
+
+.selector-div {
+    width: 176px;
+    margin-left: 23px;
+    margin-right: 23px;
+    text-align: center;
+}
+
+.settings-item div {
+    display: inline-block;
+    float: left;
+}
+
+#puzzle-thumb {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
+
+#puzzle-label {
+    clear: left;
+    line-height: 32px;
+}
+
+.tile {
+    position: absolute;
+    transition: all 200ms;
+    z-index: initial;
+}
+
+.tile:hover {
+    transform: scale(1.04);
+    box-shadow: 0 3px 12px 0 #7f7f7f;
+    z-index: 30;
+}
+
+#button-row {
+    width: 352px;
+    height: 56px;
+    margin-left: auto; margin-right: auto;
+    margin-top: 26px;
+    position: relative;
+}
+
+.button {
+    box-shadow: 0 3px 6px 0 #7f7f7f;
+    transition: all 300ms;
+    border-radius: 4px;
+}
+
+.button-enable {
+    background-color: #9C27B0;
+}
+
+.button-disable {
+    background-color: #9E9E9E;
+}
+
+.button p {
+    color: white;
+    width: inherit;
+    text-align: center;
+    font-family: "微软雅黑","黑体","sans-serif","等线";
+}
+
+.button-enable:hover {
+    box-shadow: 0 3px 12px 0 #7f7f7f;
+    background-color: #BA68C8;
+}
+
+.button-enable:hover,.button-enable:hover p {
+    cursor: pointer;
+}
+
+.button-disable:hover p {
+    cursor: default;
+}
+
+.button-main {
+    width: 100px;
+    position: absolute;
+    top: 0;
+}
+
+.button-main-l {
+    left: 0;
+}
+
+.button-main-m {
+    left: 126px;
+}
+
+.button-main-r {
+    left: 252px;
+}
+
+.button-main-hide-l {
+    transform: scale(0, 1);
+    left: -50px;
+}
+
+.button-main-hide-r {
+    transform: scale(0, 1);
+    left: 302px;
+}
+
+.button-main-long {
+    width: 352px;
+    left: 0;
+}
+
+.button-prev,.button-next {
+    width: 42px;
+    height: 42px;
+}
+
+.button-prev img,.button-next img {
+    width: 42px;
+    height: 42px;
+}
+
+#about {
+    text-align: center;
+}
+
+#about a {
+    color: #7B1FA2;
+}

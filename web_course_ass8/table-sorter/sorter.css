@@ -1,0 +1,34 @@
+h2 {
+    font-family: "Times New Roman","serif";
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table,td,th {
+    border: 1px solid #bfbfbf;
+}
+
+th img {
+    line-height: 16px;
+}
+
+thead {
+    background-color: #031b7f;
+    color: white;
+    font-family: "Arial","san-serif";
+}
+
+td {
+    font-weight: bold;
+    background-color: white;
+}
+
+.filter-head {
+    background-color: #a6affc;
+}
+
+.td-even {
+    background-color: #dddddd;
+}

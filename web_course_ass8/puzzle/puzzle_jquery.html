@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="puzzle_jquery.css"/>
+        <script type="text/javascript" src="libs/jquery.js"></script>
+        <script type="text/javascript" src="libs/lodash.js"></script>
+        <script type="text/javascript" src="puzzle_jquery.js"></script>
+        <title>Fifteen Puzzle</title>
+        <link rel="icon" type="image/png" href="res/icon.png"/>
+    </head>
+    <body>
+        <h1>Fifteen Puzzle</h1>
+        <h2 id="your-score">你的分数：</h2>
+        <div id="main-board">
+            <div id="puzzle-board" class="board-visible board"></div>
+            <div id="win-board" class="board">
+                <h2>666，你居然赢了！</h2>
+                <p id="win-score">你的分数：</p>
+                <h2>你的名字</h2>
+                <input id="player-name" type="text" value="未命名"/>
+                <div id="upload-score" class="button button-enable">
+                    <p id="upload-score-label">上传分数</p>
+                </div>
+            </div>
+            <div id="rankings-board" class="board">
+                <h2>线上排行榜</h2>
+                <div id="scrollable-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="rankings-list-column-narrow">排名</th>
+                                <th class="rankings-list-column-wide">玩家</th>
+                                <th class="rankings-list-column-narrow">分数</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rankings-list"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="settings-board" class="board">
+                <h2>选择拼图</h2>
+                <div id="puzzle-settings-item" class="settings-item">
+                    <div id="prev-puzzle" class="button button-prev button-enable"><img src="res/arrow_left.png" /></div>
+                    <div class="selector-div">
+                        <img id="puzzle-thumb" />
+                    </div>
+                    <div id="next-puzzle" class="button button-next button-enable"><img src="res/arrow_right.png" /></div>
+                    <p id="puzzle-label">功夫熊猫</p>
+                </div>
+                <h2>作者：<a href="http://blog.perqin.com/" title="My Website" target="_blank">沛秦</a></h2>
+            </div>
+            <div id="loading-overlay" class="board">
+                <div id="indicator-container">
+                    <div id="indicator-1" class="indicator"></div>
+                    <div id="indicator-2" class="indicator"></div>
+                    <div id="indicator-3" class="indicator"></div>
+                </div>
+            </div>
+        </div>
+        <div id="button-row">
+            <div id="game-rankings" class="button button-main button-enable button-main-l">
+                <p id="game-rankings-label">线上排行</p>
+            </div>
+            <div id="game-control" class="button button-main button-enable button-main-m">
+                <p id="game-control-label">开始</p>
+            </div>
+            <div id="game-settings" class="button button-main button-enable button-main-r">
+                <p id="game-settings-label">设置</p>
+            </div>
+        </div>
+        <p id="about"><a href="http://blog.perqin.com/index.php/2015/11/20/about-fifteen-puzzle-game/" target="_blank" title="关于这个游戏">关于这个游戏</a></p>
+    </body>
+</html>
