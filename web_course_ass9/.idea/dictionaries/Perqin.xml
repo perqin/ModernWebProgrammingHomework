@@ -2,6 +2,8 @@
   <dictionary name="Perqin">
     <words>
       <w>querystring</w>
+      <w>signin</w>
+      <w>studentinfo</w>
     </words>
   </dictionary>
 </component>
