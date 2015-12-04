@@ -2,7 +2,8 @@ var Http = require('http'),
     Url = require('url'),
     Path = require('path'),
     QueryString = require('querystring'),
-    FileSystem = require('fs');
+    FileSystem = require('fs'),
+    CheckError = require('./node_modules/checkerror.js');
 var DataSource = function () {
     var dataSource, prepared = false;
     function _DataSource() {
@@ -49,14 +50,6 @@ function Student(error, username, id, tel, email) {
     this.email = email;
 }
 
-function StudentError(code, usernameErr, idErr, telErr, emailErr) {
-    this.code = code;
-    this.usernameErr = usernameErr;
-    this.idErr = idErr;
-    this.telErr = telErr;
-    this.emailErr = emailErr;
-}
-
 function restrictPathName(p) {
     var rp = p;
     if (p == '/index.html') {
@@ -95,15 +88,33 @@ function retrievePlainText(pathName, encoding) {
 }
 
 function parseStudentInfo(param) {
-    var err = {};
-    err.code = 0;
-    // TODO : check err
-    return new Student(err, param.username, param.id, param.tel, param.email);
+    return new Student(CheckError.check(param), param.username, param.id, param.tel, param.email);
+}
+
+function replaceError(html, err) {
+    var h = html;
+    for (var key in err) {
+        if (err.hasOwnProperty(key) && key != 'code') {
+            h = h.replace('{' + key + '}', err[key] ? CheckError.ERR_STRs[key] : '');
+        }
+    }
+    return h;
 }
 
 // When x in '?username=x' exists, call goStudentInfo, otherwise goSignUp will be call.
-function goSignUp(request, response, error) {
+function goSignUp(request, response, student) {
     var html = retrievePlainText('/signin.html', 'utf-8');
+    if (student) {
+        for (var key in student) {
+            if (student.hasOwnProperty(key)) {
+                if (key != 'error') {
+                    html = html.replace('{' + key + '}', student[key]);
+                } else {
+                    html = replaceError(html, student[key]);
+                }
+            }
+        }
+    }
     response.writeHead(200, {'Content-Type': 'text/html'});
     response.write(html);
     response.end();
@@ -145,15 +156,13 @@ function requestListener(request, response) {
                 data += chunk;
             });
             request.addListener('end', function () {
-                console.log(data);
                 student = parseStudentInfo(QueryString.parse(data));
-                console.log(student);
                 if (!student.error.code) {
                     DataSource.addStudent(student);
                     response.writeHead(302, { 'Location': '/?username=' + encodeURIComponent(student.username) });
                     response.end();
                 } else {
-                    goSignUp(request, response, student.error);
+                    goSignUp(request, response, student);
                 }
             });
         } else {
@@ -166,7 +175,7 @@ function requestListener(request, response) {
 
 function ServerMain() {
     DataSource.prepare();
-    Http.createServer(requestListener).listen(8080);
+    Http.createServer(requestListener).listen(8000);
 }
 
 ServerMain();
