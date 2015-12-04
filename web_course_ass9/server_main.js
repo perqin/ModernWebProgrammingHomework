@@ -91,18 +91,30 @@ function parseStudentInfo(param) {
     return new Student(CheckError.check(param), param.username, param.id, param.tel, param.email);
 }
 
-function replaceError(html, err) {
+function checkExist(student) {
+    var exists = {}, bundle = {};
+    for (var k in student) {
+        if (student.hasOwnProperty(k) && k != 'error') {
+            exists[k + 'Exists'] = (DataSource.findStudentBy(k, student[k]) != null);
+        }
+    }
+    bundle.exists = exists;
+    bundle.hasExist = (exists.usernameExists || exists.idExists || exists.telExists || exists.emailExists);
+    return bundle;
+}
+
+function replaceError(html, err, exists) {
     var h = html;
     for (var key in err) {
         if (err.hasOwnProperty(key) && key != 'code') {
-            h = h.replace('{' + key + '}', err[key] ? CheckError.ERR_STRs[key] : '');
+            h = h.replace('{' + key + '}', err[key] ? CheckError.ERR_STRs[key] : (exists && exists[key.substr(0, key.length - 3) + 'Exists'] ? CheckError.EXI_STRs[key] : ''));
         }
     }
     return h;
 }
 
 // When x in '?username=x' exists, call goStudentInfo, otherwise goSignUp will be call.
-function goSignUp(request, response, student) {
+function goSignUp(request, response, student, exists) {
     var html = retrievePlainText('/signin.html', 'utf-8');
     if (student) {
         for (var key in student) {
@@ -110,7 +122,7 @@ function goSignUp(request, response, student) {
                 if (key != 'error') {
                     html = html.replace('{' + key + '}', student[key]);
                 } else {
-                    html = replaceError(html, student[key]);
+                    html = replaceError(html, student['error'], exists);
                 }
             }
         }
@@ -157,12 +169,13 @@ function requestListener(request, response) {
             });
             request.addListener('end', function () {
                 student = parseStudentInfo(QueryString.parse(data));
-                if (!student.error.code) {
+                var existsBundle = checkExist(student);
+                if (!student.error.code && !existsBundle.hasExist) {
                     DataSource.addStudent(student);
                     response.writeHead(302, { 'Location': '/?username=' + encodeURIComponent(student.username) });
                     response.end();
                 } else {
-                    goSignUp(request, response, student);
+                    goSignUp(request, response, student, existsBundle.exists);
                 }
             });
         } else {
