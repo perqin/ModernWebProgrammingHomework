@@ -59,13 +59,13 @@ form {
     padding-right: 12px;
 }
 
-.submit-box {
+.submit-box,.reset-box {
     width: inherit;
     height: 48px;
     margin-top: 24px;
 }
 
-.submit-box input {
+.submit-box input,.reset-box input {
     width: 360px;
     height: 48px;
     padding: 0; margin: 0;
@@ -78,7 +78,7 @@ form {
     transition: background-color 480ms,border 480ms,color 480ms;
 }
 
-.submit-box input:hover {
+.submit-box input:hover,.reset-box input:hover {
     background-color: white;
     color: #2196F3;
     cursor: pointer;

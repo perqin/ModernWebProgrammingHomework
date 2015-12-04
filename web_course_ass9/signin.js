@@ -19,6 +19,10 @@ function validate() {
     $('input[type="submit"]').prop('disabled', err.code != 0);
 }
 
+function resetInputs() {
+    $('input[type="text"]').val('');
+}
+
 $(window).load(function () {
     var inputs = $('input[type="text"]');
     inputs.on('input', validate);
@@ -27,5 +31,6 @@ $(window).load(function () {
             inputs.eq(index).val('');
         }
     });
+    $('.reset-box input').click(resetInputs);
     validate();
 });
