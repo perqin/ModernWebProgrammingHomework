@@ -1,0 +1,245 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#bottom-positioner {
+    height: 178px;
+    width: 200px;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    margin-left: -100px;
+}
+
+#button {
+    width: 28px;
+    height: 28px;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+#button:hover {
+    width: 148px;
+    height: 160px;
+    border-radius: 0 90px 90px 50px;
+}
+
+#info-bar {
+    border-radius: 67px;
+    height: 134px;
+    width: 134px;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -53px;
+    bottom: 0;
+    left: -53px;
+    margin: auto;
+    -webkit-transform: scale(0.1);
+    -moz-transform: scale(0.1);
+    -ms-transform: scale(0.1);
+    -o-transform: scale(0.1);
+    transform: scale(0.1);
+    opacity: 0;
+}
+
+.info-bar {
+    background-color: rgba(48, 63, 159, 1);
+}
+
+#button:hover #info-bar {
+    -webkit-transform: scale(1) translateY(-100px);
+    -moz-transform: scale(1) translateY(-100px);
+    -ms-transform: scale(1) translateY(-100px);
+    -o-transform: scale(1) translateY(-100px);
+    transform: scale(1) translateY(-100px);
+    opacity: 1;
+}
+
+.info {
+    height: 134px;
+    width: 134px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#result-label {
+    width: inherit;
+    height: inherit;
+    text-align: center;
+    line-height: 96px;
+    font-size: 27px;
+    font-weight: bolder;
+    color: #59c193;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#control-ring-container {
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#control-ring {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.button {
+    width: 34px;
+    height: 34px;
+    border-radius: 17px;
+    background-color: rgba(48, 63, 159, 1);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.button-disabled {
+    background-color: #7f7f7f;
+}
+
+#button:hover .button {
+    opacity: 1;
+}
+
+.number-label {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    display: inline-block;
+    text-align: center;
+    line-height: 34px;
+    color: #59c193;
+    font-weight: bolder;
+}
+
+#button:hover #box-a {
+    -webkit-transform: translateX(-65px) translateY(-37px);
+    -moz-transform: translateX(-65px) translateY(-37px);
+    -ms-transform: translateX(-65px) translateY(-37px);
+    -o-transform: translateX(-65px) translateY(-37px);
+    transform: translateX(-65px) translateY(-37px);
+}
+
+#button:hover #box-b {
+    -webkit-transform: translateX(-73px) translateY(3px);
+    -moz-transform: translateX(-73px) translateY(3px);
+    -ms-transform: translateX(-73px) translateY(3px);
+    -o-transform: translateX(-73px) translateY(3px);
+    transform: translateX(-73px) translateY(3px);
+}
+
+#button:hover #box-c {
+    -webkit-transform: translateX(-59px) translateY(41px);
+    -moz-transform: translateX(-59px) translateY(41px);
+    -ms-transform: translateX(-59px) translateY(41px);
+    -o-transform: translateX(-59px) translateY(41px);
+    transform: translateX(-59px) translateY(41px);
+}
+
+#button:hover #box-d {
+    -webkit-transform: translateX(-26px) translateY(63px);
+    -moz-transform: translateX(-26px) translateY(63px);
+    -ms-transform: translateX(-26px) translateY(63px);
+    -o-transform: translateX(-26px) translateY(63px);
+    transform: translateX(-26px) translateY(63px);
+}
+
+#button:hover #box-e {
+    -webkit-transform: translateX(19px) translateY(60px);
+    -moz-transform: translateX(19px) translateY(60px);
+    -ms-transform: translateX(19px) translateY(60px);
+    -o-transform: translateX(19px) translateY(60px);
+    transform: translateX(19px) translateY(60px);
+}
+
+.bubble {
+    display: block;
+    background-color: red;
+    border-radius: 11px;
+    height: 22px;
+    width: 22px;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bolder;
+    line-height: 22px;
+    float: right;
+    margin-top: -7px;
+    margin-right: -7px;
+}
+
+.apb,.icon {
+    width: 28px;
+    height: 28px;
+}
+
+.apb {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 14px;
+    background-color: #a09dc2;
+}
+
+#button:hover .apb {
+    background-color: rgba(48, 63, 159, 1);
+    -webkit-transform: scale(1.86);
+    -moz-transform: scale(1.86);
+    -ms-transform: scale(1.86);
+    -o-transform: scale(1.86);
+    transform: scale(1.86);
+}
+
+.icon {
+    background-image: url(assets/images/atplus_white.png);
+    background-repeat: no-repeat;
+    background-size: 24px auto;
+    background-position: center;
+}
+
+#button:hover .icon {
+    background-image: url(assets/images/atplus_green.png);
+    background-repeat: no-repeat;
+    background-size: 20px auto;
+    background-position: center;
+}
+
+.apb,.apb * {
+    -webkit-transition: all 500ms ease 350ms;
+    -moz-transition: all 500ms ease 350ms;
+    -o-transition: all 500ms ease 350ms;
+    transition: all 500ms ease 350ms;
+}
+
+#button,#info-bar,#info-bar *,#control-ring-container *,#button:hover,#button:hover .apb,#button:hover .apb *,#button:hover #info-bar,#button:hover #info-bar *,#button:hover #control-ring-container * {
+    -webkit-transition: all 500ms;
+    -moz-transition: all 500ms;
+    -o-transition: all 500ms;
+    transition: all 500ms;
+}
