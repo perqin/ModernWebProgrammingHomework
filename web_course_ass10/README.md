@@ -8,6 +8,7 @@
   + `S3` - Contains html and js files for S3.
   + `S4` - Contains html and js files for S4.
   + `S5` - Contains html and js files for S5.
+  + `index.css` - Stylesheet for `index.html`.
   + `index.html` - Index page that takes you to each part of the homework.
   + `server.js` - Server source.
 * Notice
