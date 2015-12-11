@@ -21,6 +21,7 @@ function validate() {
 
 function resetInputs() {
     $('input[type="text"]').val('');
+    validate();
 }
 
 $(window).load(function () {
