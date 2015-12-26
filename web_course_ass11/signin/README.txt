@@ -1,0 +1,1 @@
+Please use 'node bin/www' to run server.
